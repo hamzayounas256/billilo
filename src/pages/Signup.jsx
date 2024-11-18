@@ -16,12 +16,20 @@ export default function Signup() {
 				<hr className="border-none h-[1.5px] w-8 bg-gray-800" />
 			</div>
 
-			<input
-				type="text"
-				className="w-full px-3 py-2 border border-gray-800"
-				placeholder="Name"
-				required
-			/>
+			<div className="w-full flex justify-between gap-2">
+				<input
+					type="text"
+					className="w-1/2 px-3 py-2 border border-gray-800"
+					placeholder="First Name"
+					required
+				/>
+				<input
+					type="text"
+					className="w-1/2 px-3 py-2 border border-gray-800"
+					placeholder="Last Name"
+					required
+				/>
+			</div>
 
 			<input
 				type="email"
@@ -29,12 +37,35 @@ export default function Signup() {
 				placeholder="Email Address"
 				required
 			/>
+			<div className="w-full flex justify-between gap-2">
+				<input
+					type="text"
+					className="w-1/2 px-3 py-2 border border-gray-800"
+					placeholder="Phone Number"
+					required
+				/>
+				<input
+					type="text"
+					className="w-1/2 px-3 py-2 border border-gray-800"
+					placeholder="Country Name"
+					required
+				/>
+			</div>
+
 			<input
 				type="password"
 				className="w-full px-3 py-2 border border-gray-800"
 				placeholder="Password"
 				required
 			/>
+
+			<input
+				type="password"
+				className="w-full px-3 py-2 border border-gray-800"
+				placeholder="Confirm Password"
+				required
+			/>
+
 			<div className="w-full flex justify-between text-sm mt-[-8px]">
 				<p className="cursor-pointer">Forgot Your Password?</p>
 
