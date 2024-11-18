@@ -3,6 +3,9 @@ import { assets } from "../assets/assets";
 import { AnimalContext } from "../context/AnimalContext";
 
 export default function Footer() {
+	const date = new Date();
+	const currentYear = date.getFullYear();
+
 	const { navigate } = useContext(AnimalContext);
 
 	return (
@@ -89,7 +92,7 @@ export default function Footer() {
 			<div>
 				<hr />
 				<p className="py-10 text-center text-sm text-orange-400">
-					&copy; 2024 E-COMMERCE. All rights reserved.
+					&copy; {currentYear} BILLILO. All rights reserved.
 				</p>
 			</div>
 		</div>

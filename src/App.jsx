@@ -11,6 +11,7 @@ import Contact from "./pages/Contact";
 import LostAndFoundPet from "./pages/LostAndFoundPet";
 import VetsNearby from "./pages/VetsNearby";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 function App() {
 	return (
@@ -20,6 +21,7 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/login" element={<Login />} />
+				<Route path="/signup" element={<Signup />} />
 				<Route path="/adoptpet" element={<AdoptPet />} />
 				<Route path="/animalshelter" element={<AnimalShelter />} />
 				<Route path="/contact" element={<Contact />} />
