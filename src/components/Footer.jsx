@@ -9,7 +9,7 @@ export default function Footer() {
 	const { navigate } = useContext(AnimalContext);
 
 	return (
-		<div className="w-[100%] bg-black text-white px-2">
+		<div className="w-[100%] bg-black text-white px-2 mt-5">
 			<div className="flex flex-col sm:grid grid-cols-[2fr_1fr_1fr_1fr] gap-6 py-20 px-5 text-sm">
 				<div>
 					<p className="text-xl font-medium mb-5 text-orange-400">ABOUT US</p>

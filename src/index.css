@@ -24,8 +24,16 @@ a.active hr {
 	}
 }
 
+::-webkit-scrollbar {
+	display: none;
+}
+
 .prata-regular {
 	font-family: "Prata", serif;
 	font-weight: 400;
 	font-style: normal;
+}
+
+.slider {
+	background: #f97316; /* Orange color */
 }

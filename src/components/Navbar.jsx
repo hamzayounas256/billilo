@@ -1,12 +1,72 @@
 import { Link, NavLink } from "react-router-dom";
 import { assets } from "../assets/assets";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AnimalContext } from "../context/AnimalContext";
+import axios from "axios";
+import { toast } from "react-toastify";
 export default function Navbar() {
 	const [visible, setVisible] = useState(false);
 
+	const [currentStatus, setCurrentStatus] = useState("Login");
+
 	const { navigate } = useContext(AnimalContext);
 
+	const accessToken = localStorage.getItem("access_token");
+	const id = localStorage.getItem("id");
+	const userImg = localStorage.getItem("userImg");
+
+	useEffect(() => {
+		// Check if the user is logged in on component mount
+		if (accessToken !== null) {
+			setCurrentStatus("Logout");
+		}
+	}, [accessToken]);
+
+	const logoutHandler = async () => {
+		try {
+			const response = await axios.post(
+				"https://petapp1503.pythonanywhere.com/petapp/logout/",
+				{
+					user_id: id,
+					access_token: accessToken,
+				},
+				{
+					headers: {
+						"Content-Type": "application/x-www-form-urlencoded",
+					},
+				}
+			);
+
+			if (response.status === 200) {
+				// console.log("Logout successful");
+
+				// Remove user data from localStorage
+				localStorage.removeItem("access_token");
+				localStorage.removeItem("refresh_token");
+				localStorage.removeItem("user_name");
+				localStorage.removeItem("id");
+				localStorage.removeItem("user_email");
+				localStorage.removeItem("userImg");
+
+				// Update status and navigate to login page
+				setCurrentStatus("Login");
+				toast.success("Logout Successfully");
+				navigate("/");
+			} else {
+				toast.error("Logout failed:", response.data);
+			}
+		} catch (error) {
+			if (error.response) {
+				console.error("Response Error:", error.response.data);
+				console.error("Status Code:", error.response.status);
+				console.error("Headers:", error.response.headers);
+			} else if (error.request) {
+				console.error("Request Error:", error.request);
+			} else {
+				console.error("Other Error:", error.message);
+			}
+		}
+	};
 	return (
 		<div className="flex items-center justify-between py-5 font-medium">
 			<Link to="/">
@@ -22,29 +82,33 @@ export default function Navbar() {
 					<p>ABOUT US</p>
 					<hr className="w-2/4 border-none h-[1.5px] bg-orange-700 hidden" />
 				</NavLink>
-				<div className="flex flex-col gap-1 items-center">
-					<div className="group relative">
-						<p>FIND PET</p>
-						<div className="group-hover:block hidden absolute dropdown-menu right-0 pt-3">
-							<div className="flex flex-col gap-2 w-44 py-3 px-5 bg-slate-100 text-grey-500 rounded">
-								<p
-									onClick={() => navigate("/lostandfoundpet")}
-									className="cursor-pointer hover:text-black"
-								>
-									LOST & FOUND PET
-								</p>
+				{currentStatus === "Login" ? (
+					""
+				) : (
+					<div className="flex flex-col gap-1 items-center">
+						<div className="group relative">
+							<p>FIND PET</p>
+							<div className="group-hover:block hidden absolute dropdown-menu right-0 pt-3">
+								<div className="flex flex-col gap-2 w-44 py-3 px-5 bg-slate-100 text-grey-500 rounded">
+									<p
+										onClick={() => navigate("/lostandfoundpet")}
+										className="cursor-pointer hover:text-black"
+									>
+										LOST & FOUND PET
+									</p>
 
-								<p
-									onClick={() => navigate("/adoptpet")}
-									className="cursor-pointer hover:text-black"
-								>
-									ADOPT PET
-								</p>
+									<p
+										onClick={() => navigate("/adoptpet")}
+										className="cursor-pointer hover:text-black"
+									>
+										ADOPT PET
+									</p>
+								</div>
 							</div>
 						</div>
+						<hr className="w-2/4 border-none h-[1.5px] bg-orange-700 hidden" />
 					</div>
-					<hr className="w-2/4 border-none h-[1.5px] bg-orange-700 hidden" />
-				</div>
+				)}
 				<div className="flex flex-col gap-1 items-center">
 					<div className="group relative">
 						<p>PET CARE</p>
@@ -78,8 +142,16 @@ export default function Navbar() {
 				onClick={() => navigate("/login")}
 				className="flex items-center gap-2 text-sm text-orange-700 cursor-pointer"
 			>
-				<img className="w-5" src={assets.profile_icon} alt="profile" />
-				<p>LOGIN</p>
+				{userImg ? (
+					<img className="w-5" src={userImg} alt="profile" />
+				) : (
+					<img className="w-5" src={assets.profile_icon} alt="profile" />
+				)}
+				{currentStatus === "Login" ? (
+					<p onClick={() => navigate("/login")}>LOGIN</p>
+				) : (
+					<p onClick={logoutHandler}>LOGOUT</p>
+				)}
 
 				<img
 					src={assets.menu_icon}

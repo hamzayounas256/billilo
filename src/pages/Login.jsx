@@ -10,6 +10,7 @@ export default function Login() {
 		register,
 		handleSubmit,
 		formState: { errors },
+		reset,
 	} = useForm();
 
 	const onSubmitHandler = async (data) => {
@@ -19,22 +20,31 @@ export default function Login() {
 				{
 					email: data.email,
 					password: data.password,
+				},
+				{
+					headers: {
+						"Content-Type": "application/x-www-form-urlencoded", // Make sure this matches your backend's expected content type
+					},
 				}
 			);
-
+			// console.log(response);
 			// Check if login is successful
 			if (response.data.success) {
-				const { access_token, refresh_token, first_name, email } =
+				const { access_token, refresh_token, first_name, email, id, image } =
 					response.data.data;
+
+				reset();
 
 				// Store tokens in localStorage
 				localStorage.setItem("access_token", access_token);
 				localStorage.setItem("refresh_token", refresh_token);
 				localStorage.setItem("user_name", first_name);
+				localStorage.setItem("id", id);
 				localStorage.setItem("user_email", email);
+				localStorage.setItem("userImg", image);
 
 				// Navigate to dashboard on success
-				navigate("/dashboard");
+				navigate("/");
 
 				toast.success("Login successful!");
 			} else {
@@ -43,7 +53,7 @@ export default function Login() {
 			}
 		} catch (error) {
 			// Handle API call failure
-			console.error("Login failed:", error.response?.data || error.message);
+			console.error("Login failed:", error.message);
 			toast.error("An error occurred during login. Please try again.");
 		}
 	};
@@ -92,10 +102,10 @@ export default function Login() {
 					placeholder="Password"
 					{...register("password", {
 						required: "Password is required",
-						minLength: {
-							value: 8,
-							message: "Password must be at least 8 characters",
-						},
+						// minLength: {
+						// 	value: 8,
+						// 	message: "Password must be at least 8 characters",
+						// },
 					})}
 				/>
 

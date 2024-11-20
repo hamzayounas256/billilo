@@ -5,7 +5,7 @@ export const AnimalContext = createContext();
 
 const AnimalContextProvider = (props) => {
 	const navigate = useNavigate();
-	const currency = "$";
+	const currency = "Rs";
 
 	const value = { navigate, currency };
 

@@ -12,6 +12,7 @@ import LostAndFoundPet from "./pages/LostAndFoundPet";
 import VetsNearby from "./pages/VetsNearby";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Product from "./pages/Product";
 
 function App() {
 	return (
@@ -26,6 +27,7 @@ function App() {
 					<Route path="/adoptpet" element={<AdoptPet />} />
 					<Route path="/animalshelter" element={<AnimalShelter />} />
 					<Route path="/contact" element={<Contact />} />
+					<Route path="/product/:productId" element={<Product />} />
 					<Route path="/lostandfoundpet" element={<LostAndFoundPet />} />
 					<Route path="/vetsnearby" element={<VetsNearby />} />
 					<Route path="/about" element={<About />} />
