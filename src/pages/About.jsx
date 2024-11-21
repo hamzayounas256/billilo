@@ -1,19 +1,38 @@
 import Title from "../components/Title";
 import { assets } from "../assets/assets";
 
+import { motion } from "framer-motion";
+import { fadeIn } from "../variants";
+
 export default function About() {
 	return (
-		<div>
-			<div className="text-2xl text-center pt-8 border-t">
+		<div className="container mx-auto">
+			<motion.div
+				variants={fadeIn("down", 0.2)}
+				initial="hidden"
+				whileInView={"show"}
+				viewport={{ once: true, amount: 0.9 }}
+				className="text-2xl text-center pt-8 border-t"
+			>
 				<Title text1={"ABOUT"} text2={"US"} />
-			</div>
+			</motion.div>
 			<div className="my-10 flex flex-col justify-center md:flex-row gap-16">
-				<img
+				<motion.img
+					variants={fadeIn("right", 0.2)}
+					initial="hidden"
+					whileInView={"show"}
+					viewport={{ once: true, amount: 0.9 }}
 					className="w-full md:max-w-[450px]"
 					src={assets.about_img}
 					alt=""
 				/>
-				<div className="flex flex-col justify-center gap-6 md:w-2/4 text-gray-600">
+				<motion.div
+					variants={fadeIn("left", 0.2)}
+					initial="hidden"
+					whileInView={"show"}
+					viewport={{ once: true, amount: 0.9 }}
+					className="flex flex-col justify-center gap-6 md:w-2/4 text-gray-600"
+				>
 					<p>
 						Welcome to BilliLo, where passion meets purpose! Founded by Rihaab
 						Fareed, an aspiring young advocate for animals, our journey began
@@ -26,10 +45,16 @@ export default function About() {
 						experiences, I set out to create a solution that could bridge the
 						gap between pet parents and compassionate adopters.
 					</p>
-				</div>
+				</motion.div>
 			</div>
 
-			<div className="flex flex-col md:flex-row text-sm my-5">
+			<motion.div
+				variants={fadeIn("up", 0.2)}
+				initial="hidden"
+				whileInView={"show"}
+				viewport={{ once: true, amount: 0.9 }}
+				className="flex flex-col md:flex-row text-sm my-5"
+			>
 				<div className="border border-orange-300 px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5">
 					<p className="text-gray-600 text-justify">
 						BilliLo is Pakistan’s first app and website dedicated to
@@ -57,7 +82,7 @@ export default function About() {
 						animal welfare, one paw at a time.
 					</p>
 				</div>
-			</div>
+			</motion.div>
 		</div>
 	);
 }

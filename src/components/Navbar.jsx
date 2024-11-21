@@ -51,7 +51,7 @@ export default function Navbar() {
 				// Update status and navigate to login page
 				setCurrentStatus("Login");
 				toast.success("Logout Successfully");
-				navigate("/");
+				navigate("/login");
 			} else {
 				toast.error("Logout failed:", response.data);
 			}
@@ -68,7 +68,7 @@ export default function Navbar() {
 		}
 	};
 	return (
-		<div className="flex items-center justify-between py-5 font-medium">
+		<div className="container mx-auto flex items-center justify-between py-5 font-medium">
 			<Link to="/">
 				<img src={assets.logo} className="w-36" alt="Logo" />
 			</Link>

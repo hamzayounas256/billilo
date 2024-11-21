@@ -4,6 +4,9 @@ import axios from "axios";
 import { AnimalContext } from "../context/AnimalContext";
 import { toast } from "react-toastify";
 
+import { motion } from "framer-motion";
+import { fadeIn } from "../variants";
+
 export default function Signup() {
 	const { navigate } = useContext(AnimalContext);
 
@@ -66,15 +69,27 @@ export default function Signup() {
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmitHandler, onInvalidHandler)}
-			className="flex flex-col items-center w-[90%] sm:max-w-96 m-auto my-14 gap-4 text-gray-800"
+			className="flex flex-col items-center w-[90%] sm:max-w-96 m-auto my-10 gap-4 text-gray-800"
 		>
-			<div className="inline-flex items-center gap-2 mb-2 mt-10">
+			<motion.div
+				variants={fadeIn("down", 0.2)}
+				initial="hidden"
+				whileInView={"show"}
+				viewport={{ once: true, amount: 0.9 }}
+				className="inline-flex items-center gap-2 mb-2 mt-10"
+			>
 				<p className="prata-regular text-3xl">Sign Up</p>
 				<hr className="border-none h-[1.5px] w-8 bg-gray-800" />
-			</div>
+			</motion.div>
 
 			{/* First Name and Last Name */}
-			<div className="w-full flex justify-between gap-2">
+			<motion.div
+				variants={fadeIn("up", 0.2)}
+				initial="hidden"
+				whileInView={"show"}
+				viewport={{ once: true, amount: 0.9 }}
+				className="w-full flex justify-between gap-2"
+			>
 				<input
 					type="text"
 					className={`w-1/2 px-3 py-2 border ${
@@ -91,10 +106,14 @@ export default function Signup() {
 					placeholder="Last Name"
 					{...register("last_name", { required: "Last Name is required" })}
 				/>
-			</div>
+			</motion.div>
 
 			{/* Email */}
-			<input
+			<motion.input
+				variants={fadeIn("up", 0.2)}
+				initial="hidden"
+				whileInView={"show"}
+				viewport={{ once: true, amount: 0.9 }}
 				type="email"
 				className={`w-full px-3 py-2 border ${
 					errors.email ? "border-red-500" : "border-gray-800"
@@ -110,7 +129,13 @@ export default function Signup() {
 			/>
 
 			{/* Phone Number and Country */}
-			<div className="w-full flex justify-between gap-2">
+			<motion.div
+				variants={fadeIn("up", 0.2)}
+				initial="hidden"
+				whileInView={"show"}
+				viewport={{ once: true, amount: 0.9 }}
+				className="w-full flex justify-between gap-2"
+			>
 				<input
 					type="text"
 					className={`w-1/2 px-3 py-2 border ${
@@ -124,8 +149,8 @@ export default function Signup() {
 							message: "Phone Number must be at least 11 characters",
 						},
 						maxLength: {
-							value: 12,
-							message: "Phone Number cannot exceed 12 characters",
+							value: 13,
+							message: "Phone Number cannot exceed 13 characters",
 						},
 						pattern: {
 							value: /^[0-9]+$/,
@@ -141,10 +166,14 @@ export default function Signup() {
 					placeholder="Country"
 					{...register("country", { required: "Country is required" })}
 				/>
-			</div>
+			</motion.div>
 
 			{/* Password and Confirm Password */}
-			<input
+			<motion.input
+				variants={fadeIn("up", 0.2)}
+				initial="hidden"
+				whileInView={"show"}
+				viewport={{ once: true, amount: 0.9 }}
 				type="password"
 				className={`w-full px-3 py-2 border ${
 					errors.password ? "border-red-500" : "border-gray-800"
@@ -158,7 +187,11 @@ export default function Signup() {
 					},
 				})}
 			/>
-			<input
+			<motion.input
+				variants={fadeIn("up", 0.2)}
+				initial="hidden"
+				whileInView={"show"}
+				viewport={{ once: true, amount: 0.9 }}
 				type="password"
 				className={`w-full px-3 py-2 border ${
 					errors.confirm_password ? "border-red-500" : "border-gray-800"
@@ -172,7 +205,11 @@ export default function Signup() {
 			/>
 
 			{/* Profile Image */}
-			<input
+			<motion.input
+				variants={fadeIn("up", 0.2)}
+				initial="hidden"
+				whileInView={"show"}
+				viewport={{ once: true, amount: 0.9 }}
 				type="file"
 				className={`w-full px-3 py-2 border ${
 					errors.profile_img ? "border-red-500" : "border-gray-800"
@@ -188,9 +225,15 @@ export default function Signup() {
 					Login Here
 				</p>
 			</div>
-			<button className="bg-black text-white font-light px-8 py-2 mt-4">
+			<motion.button
+				variants={fadeIn("up", 0.2)}
+				initial="hidden"
+				whileInView={"show"}
+				viewport={{ once: true, amount: 0.9 }}
+				className="bg-black text-white font-light px-8 py-2 mt-4"
+			>
 				Sign Up
-			</button>
+			</motion.button>
 		</form>
 	);
 }

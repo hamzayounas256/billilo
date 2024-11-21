@@ -16,23 +16,22 @@ import Product from "./pages/Product";
 
 function App() {
 	return (
-		<div className="px-4 sm:px-[5px] md:px-[7px] lg:px-[9px]">
+		// <div className="mx-auto px-4 sm:px-[5px] md:px-[7px] lg:px-[9px]">
+		<div className="mx-auto">
 			<ToastContainer />
-			<div className="container mx-auto">
-				<Navbar />
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/login" element={<Login />} />
-					<Route path="/signup" element={<Signup />} />
-					<Route path="/adoptpet" element={<AdoptPet />} />
-					<Route path="/animalshelter" element={<AnimalShelter />} />
-					<Route path="/contact" element={<Contact />} />
-					<Route path="/product/:productId" element={<Product />} />
-					<Route path="/lostandfoundpet" element={<LostAndFoundPet />} />
-					<Route path="/vetsnearby" element={<VetsNearby />} />
-					<Route path="/about" element={<About />} />
-				</Routes>
-			</div>
+			<Navbar />
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/login" element={<Login />} />
+				<Route path="/signup" element={<Signup />} />
+				<Route path="/adoptpet" element={<AdoptPet />} />
+				<Route path="/animalshelter" element={<AnimalShelter />} />
+				<Route path="/contact" element={<Contact />} />
+				<Route path="/product/:productId" element={<Product />} />
+				<Route path="/lostandfoundpet" element={<LostAndFoundPet />} />
+				<Route path="/vetsnearby" element={<VetsNearby />} />
+				<Route path="/about" element={<About />} />
+			</Routes>
 			<Footer />
 		</div>
 	);

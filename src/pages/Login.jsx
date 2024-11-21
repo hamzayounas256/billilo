@@ -2,7 +2,10 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { AnimalContext } from "../context/AnimalContext";
-import { toast } from "react-toastify"; // Import ToastContainer and toast
+import { toast } from "react-toastify";
+import { motion } from "framer-motion";
+import { fadeIn } from "../variants";
+
 
 export default function Login() {
 	const { navigate } = useContext(AnimalContext);
@@ -72,13 +75,23 @@ export default function Login() {
 				onSubmit={handleSubmit(onSubmitHandler)}
 				className="flex flex-col items-center w-[90%] sm:max-w-96 m-auto my-14 gap-4 text-gray-800"
 			>
-				<div className="inline-flex items-center gap-2 mb-2 mt-10">
+				<motion.div
+					variants={fadeIn("down", 0.2)}
+					initial="hidden"
+					whileInView={"show"}
+					viewport={{ once: true, amount: 0.9 }}
+					className="inline-flex items-center gap-2 mb-2 mt-10"
+				>
 					<p className="prata-regular text-3xl">Login</p>
 					<hr className="border-none h-[1.5px] w-8 bg-gray-800" />
-				</div>
+				</motion.div>
 
 				{/* Email Input */}
-				<input
+				<motion.input
+					variants={fadeIn("up", 0.2)}
+					initial="hidden"
+					whileInView={"show"}
+					viewport={{ once: true, amount: 0.9 }}
 					type="email"
 					className={`w-full px-3 py-2 border ${
 						errors.email ? "border-red-500" : "border-gray-800"
@@ -94,7 +107,11 @@ export default function Login() {
 				/>
 
 				{/* Password Input */}
-				<input
+				<motion.input
+					variants={fadeIn("up", 0.2)}
+					initial="hidden"
+					whileInView={"show"}
+					viewport={{ once: true, amount: 0.9 }}
 					type="password"
 					className={`w-full px-3 py-2 border ${
 						errors.password ? "border-red-500" : "border-gray-800"
@@ -117,12 +134,16 @@ export default function Login() {
 					</p>
 				</div>
 
-				<button
+				<motion.button
+					variants={fadeIn("up", 0.2)}
+					initial="hidden"
+					whileInView={"show"}
+					viewport={{ once: true, amount: 0.9 }}
 					className="bg-black text-white font-light px-8 py-2 mt-4"
 					type="submit"
 				>
 					Login
-				</button>
+				</motion.button>
 			</form>
 		</>
 	);

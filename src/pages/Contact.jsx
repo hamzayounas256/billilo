@@ -1,19 +1,38 @@
 import Title from "../components/Title";
 import { assets } from "../assets/assets";
 
+import { motion } from "framer-motion";
+import { fadeIn } from "../variants";
+
 export default function Contact() {
 	return (
-		<div>
-			<div className="text-center text-2xl pt-10 border-t">
+		<div className="container mx-auto">
+			<motion.div
+				variants={fadeIn("down", 0.2)}
+				initial="hidden"
+				whileInView={"show"}
+				viewport={{ once: true, amount: 0.9 }}
+				className="text-center text-2xl pt-10 border-t"
+			>
 				<Title text1={"CONTACT"} text2={"US"} />
-			</div>
+			</motion.div>
 			<div className="flex flex-col md:flex-row justify-center gap-10 mb-28">
-				<img
+				<motion.img
+					variants={fadeIn("right", 0.2)}
+					initial="hidden"
+					whileInView={"show"}
+					viewport={{ once: true, amount: 0.9 }}
 					className="w-full md:max-w-[480px]"
 					src={assets.contact_img}
 					alt=""
 				/>
-				<div className="flex flex-col justify-center items-start gap-6">
+				<motion.div
+					variants={fadeIn("left", 0.2)}
+					initial="hidden"
+					whileInView={"show"}
+					viewport={{ once: true, amount: 0.9 }}
+					className="flex flex-col justify-center items-start gap-6"
+				>
 					<p className="font-semibold text-xl text-orange-600">OUR STORE</p>
 					<p className="text-gray-500">
 						15-D Al-Makkah Colony <br /> Township, Lahore, Pakistan
@@ -30,7 +49,7 @@ export default function Contact() {
 					<button className="border border-orange-600 text-orange-600 px-8 py-4 text-sm hover:bg-orange-600 hover:text-white transition-all duration-500">
 						Explore Jobs
 					</button>
-				</div>
+				</motion.div>
 			</div>
 		</div>
 	);

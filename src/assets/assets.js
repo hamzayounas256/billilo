@@ -19,6 +19,8 @@ import cross_icon from "./cross_icon.png";
 import mail_icon from "./mail.png";
 import call_icon from "./call.png";
 import location_icon from "./location.png";
+import playstore_icon from "./playstore_icon.png";
+import appstore_icon from "./appstore_icon.png";
 
 export const assets = {
 	logo,
@@ -42,4 +44,6 @@ export const assets = {
 	mail_icon,
 	call_icon,
 	location_icon,
+	playstore_icon,
+	appstore_icon,
 };
