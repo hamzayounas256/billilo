@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
 
-
 export default function Login() {
 	const { navigate } = useContext(AnimalContext);
 	const {
@@ -73,7 +72,7 @@ export default function Login() {
 		<>
 			<form
 				onSubmit={handleSubmit(onSubmitHandler)}
-				className="flex flex-col items-center w-[90%] sm:max-w-96 m-auto my-14 gap-4 text-gray-800"
+				className="flex flex-col items-center w-[90%] sm:max-w-96 m-auto my-14 gap-4 text-orange-500"
 			>
 				<motion.div
 					variants={fadeIn("down", 0.2)}
@@ -130,7 +129,7 @@ export default function Login() {
 					<p className="cursor-pointer">Forgot Your Password?</p>
 
 					<p className="cursor-pointer" onClick={() => navigate("/signup")}>
-						Create Account
+						Are You a New Member?
 					</p>
 				</div>
 

@@ -69,7 +69,7 @@ export default function Signup() {
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmitHandler, onInvalidHandler)}
-			className="flex flex-col items-center w-[90%] sm:max-w-96 m-auto my-10 gap-4 text-gray-800"
+			className="flex flex-col items-center w-[90%] sm:max-w-96 m-auto my-10 gap-4 text-orange-500"
 		>
 			<motion.div
 				variants={fadeIn("down", 0.2)}
@@ -220,9 +220,10 @@ export default function Signup() {
 			/>
 
 			<div className="w-full flex justify-between text-sm mt-[-8px]">
-				<p className="cursor-pointer">Forgot Your Password?</p>
+				{/* <p className="cursor-pointer">Forgot Your Password?</p> */}
+				<p></p>
 				<p className="cursor-pointer" onClick={() => navigate("/login")}>
-					Login Here
+					Are You An Existing Member?
 				</p>
 			</div>
 			<motion.button

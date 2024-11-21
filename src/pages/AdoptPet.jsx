@@ -4,9 +4,6 @@ import Title from "../components/Title";
 import axios from "axios";
 import { assets } from "../assets/assets";
 
-import { motion } from "framer-motion";
-import { fadeIn } from "../variants";
-
 export default function Collection() {
 	const [products, setProducts] = useState([]);
 	// const [collection, setCollection] = useState([]);
@@ -108,15 +105,9 @@ export default function Collection() {
 	};
 
 	return (
-		<div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t">
+		<div className="container mx-auto flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t">
 			{/* Filter options */}
-			<motion.div
-				variants={fadeIn("right", 0.2)}
-				initial="hidden"
-				whileInView={"show"}
-				viewport={{ once: true, amount: 0.9 }}
-				className="min-w-60"
-			>
+			<div className="min-w-60">
 				<p
 					onClick={() => setShowFilter(!showFilter)}
 					className="my-2 text-xl flex items-center cursor-pointer gap-2"
@@ -211,28 +202,16 @@ export default function Collection() {
 						))}
 					</div>
 				</div>
-			</motion.div>
+			</div>
 			{/* Right Side */}
 			<div className="flex-1">
-				<motion.div
-					variants={fadeIn("down", 0.2)}
-					initial="hidden"
-					whileInView={"show"}
-					viewport={{ once: true, amount: 0.9 }}
-					className="flex justify-center text-base sm:text-2xl mb-4"
-				>
+				<div className="flex justify-center text-base sm:text-2xl mb-4">
 					<Title text1={"ADOPT"} text2={"PET"} />
-				</motion.div>
+				</div>
 
 				{/* map the products */}
 
-				<motion.div
-					variants={fadeIn("up", 0.2)}
-					initial="hidden"
-					whileInView={"show"}
-					viewport={{ once: true, amount: 0.9 }}
-					className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 gap-y-6"
-				>
+				<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 gap-y-6">
 					{products.map((item, index) => (
 						<ProductItem
 							key={index}
@@ -244,7 +223,7 @@ export default function Collection() {
 							location={item.location}
 						/>
 					))}
-				</motion.div>
+				</div>
 			</div>
 		</div>
 	);
