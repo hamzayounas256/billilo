@@ -50,7 +50,7 @@ export default function Hero() {
 				initial="hidden"
 				whileInView={"show"}
 				viewport={{ once: true, amount: 0.9 }}
-				className="w-full sm:w-1/2 h-[550px]"
+				className="max-w-xs mx-auto lg:max-w-lg"
 				src={assets.hero_img}
 				alt=""
 			/>
