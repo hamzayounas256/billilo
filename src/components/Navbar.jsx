@@ -14,6 +14,7 @@ export default function Navbar() {
 	const accessToken = localStorage.getItem("access_token");
 	const id = localStorage.getItem("id");
 	const userImg = localStorage.getItem("userImg");
+	const name = localStorage.getItem("user_name");
 
 	useEffect(() => {
 		// Check if the user is logged in on component mount
@@ -51,7 +52,7 @@ export default function Navbar() {
 				// Update status and navigate to login page
 				setCurrentStatus("Login");
 				toast.success("Logout Successfully");
-				navigate("/login");
+				navigate("/");
 			} else {
 				toast.error("Logout failed:", response.data);
 			}
@@ -67,6 +68,7 @@ export default function Navbar() {
 			}
 		}
 	};
+	console.log(name);
 	return (
 		<div className="container mx-auto flex items-center justify-between py-5 font-medium">
 			<Link to="/">
@@ -88,20 +90,72 @@ export default function Navbar() {
 					<div className="flex flex-col gap-1 items-center">
 						<div className="group relative">
 							<p>FIND PET</p>
+							<hr className="w-2/4 border-none h-[1.5px] bg-orange-700 hidden" />
 							<div className="group-hover:block hidden absolute dropdown-menu right-0 pt-3">
 								<div className="flex flex-col gap-2 w-44 py-3 px-5 bg-slate-100 text-grey-500 rounded">
 									<p
-										onClick={() => navigate("/lostandfoundpet")}
+										onClick={() => navigate("/findlostpet")}
 										className="cursor-pointer hover:text-black"
 									>
-										LOST & FOUND PET
+										LOST PET
 									</p>
-
 									<p
-										onClick={() => navigate("/adoptpet")}
+										onClick={() => navigate("/findfoundpet")}
+										className="cursor-pointer hover:text-black"
+									>
+										FOUND PET
+									</p>
+									<p
+										onClick={() => navigate("/findadoptpet")}
 										className="cursor-pointer hover:text-black"
 									>
 										ADOPT PET
+									</p>
+									<p
+										onClick={() => navigate("/findsellpet")}
+										className="cursor-pointer hover:text-black"
+									>
+										SELL PET
+									</p>
+								</div>
+							</div>
+						</div>
+						<hr className="w-2/4 border-none h-[1.5px] bg-orange-700 hidden" />
+					</div>
+				)}
+				{currentStatus === "Login" ? (
+					""
+				) : (
+					<div className="flex flex-col gap-1 items-center">
+						<div className="group relative">
+							<p>POST PET</p>
+							<hr className="w-2/4 border-none h-[1.5px] bg-orange-700 hidden" />
+							<div className="group-hover:block hidden absolute dropdown-menu right-0 pt-3">
+								<div className="flex flex-col gap-2 w-44 py-3 px-5 bg-slate-100 text-grey-500 rounded">
+									<p
+										onClick={() => navigate("/postlostpet")}
+										className="cursor-pointer hover:text-black"
+									>
+										LOST PET
+									</p>
+									<p
+										onClick={() => navigate("/postfoundpet")}
+										className="cursor-pointer hover:text-black"
+									>
+										FOUND PET
+									</p>
+
+									<p
+										onClick={() => navigate("/postadoptpet")}
+										className="cursor-pointer hover:text-black"
+									>
+										ADOPT PET
+									</p>
+									<p
+										onClick={() => navigate("/postsellpet")}
+										className="cursor-pointer hover:text-black"
+									>
+										SELL PET
 									</p>
 								</div>
 							</div>
@@ -112,33 +166,52 @@ export default function Navbar() {
 				<div className="flex flex-col gap-1 items-center">
 					<div className="group relative">
 						<p>PET CARE</p>
+						<hr className="w-2/4 border-none h-[1.5px] bg-orange-700 hidden" />
 						<div className="group-hover:block hidden absolute dropdown-menu right-0 pt-3">
-							<div className="flex flex-col gap-2 w-40 py-3 px-5 bg-slate-100 text-grey-500 rounded">
+							<div className="flex flex-col gap-2 w-48 py-3 px-5 bg-slate-100 text-grey-500 rounded">
 								<p
-									onClick={() => navigate("/animalshelter")}
+									onClick={() => navigate("/findanimalshelter")}
 									className="cursor-pointer hover:text-black"
 								>
-									ANIMAL SHELTER
+									FIND ANIMAL SHELTER
 								</p>
 
 								<p
-									onClick={() => navigate("/vetsnearby")}
+									onClick={() => navigate("/findvetsnearby")}
 									className="cursor-pointer hover:text-black"
 								>
-									VETS NEARBY
+									FIND VETS NEARBY
 								</p>
+								{currentStatus === "Login" ? (
+									""
+								) : (
+									<>
+										<p
+											onClick={() => navigate("/postanimalshelter")}
+											className="cursor-pointer hover:text-black"
+										>
+											POST ANIMAL SHELTER
+										</p>
+										<p
+											onClick={() => navigate("/postvetsnearby")}
+											className="cursor-pointer hover:text-black"
+										>
+											POST VETS NEARBY
+										</p>
+									</>
+								)}
 							</div>
 						</div>
 					</div>
 					<hr className="w-2/4 border-none h-[1.5px] bg-orange-700 hidden" />
 				</div>
 				<NavLink to="/contact" className="flex flex-col gap-1 items-center">
-					<p>CONTACT US</p>
+					<p>CONTACT</p>
 					<hr className="w-2/4 border-none h-[1.5px] bg-orange-700 hidden" />
 				</NavLink>
 			</ul>
 
-			<div
+			{/* <div
 				onClick={() => navigate("/login")}
 				className="flex items-center gap-2 text-sm text-orange-700 cursor-pointer"
 			>
@@ -159,6 +232,53 @@ export default function Navbar() {
 					className="w-5 cursor-pointer sm:hidden"
 					alt=""
 				/>
+			</div> */}
+			<div className="flex items-center gap-2 text-sm text-orange-700 cursor-pointer">
+				<div className="group relative">
+					{userImg ? (
+						<img className="w-10 rounded-full" src={userImg} alt="profile" />
+					) : (
+						<img
+							className="w-6 rounded-full"
+							src={assets.profile_icon}
+							alt="profile"
+						/>
+					)}
+					<hr className="w-2/4 border-none h-[1.5px] bg-orange-700 hidden" />
+					<div className="group-hover:block hidden absolute dropdown-menu right-0 pt-3">
+						<div className="flex flex-col gap-2 w-44 py-3 px-5 bg-slate-100 text-grey-500 rounded">
+							<p className="cursor-pointer hover:text-black">
+								{name ? name.toUpperCase() : ""}
+							</p>
+							<p
+								onClick={() => navigate("/ownpets")}
+								className="cursor-pointer hover:text-black"
+							>
+								OWN PETS
+							</p>
+
+							{currentStatus === "Login" ? (
+								<p
+									className="hover:text-black"
+									onClick={() => navigate("/login")}
+								>
+									LOGIN
+								</p>
+							) : (
+								<p className="hover:text-black" onClick={logoutHandler}>
+									LOGOUT
+								</p>
+							)}
+						</div>
+					</div>
+				</div>
+				<img
+					src={assets.menu_icon}
+					onClick={() => setVisible(true)}
+					className="w-5 cursor-pointer sm:hidden"
+					alt=""
+				/>
+				<hr className="w-2/4 border-none h-[1.5px] bg-orange-700 hidden" />
 			</div>
 			{/* Sidebar menu for small screens */}
 			<div
@@ -190,41 +310,108 @@ export default function Navbar() {
 					>
 						ABOUT US
 					</NavLink>
+					{currentStatus === "login" ? (
+						""
+					) : (
+						<>
+							<NavLink
+								onClick={() => setVisible(false)}
+								className="py-2 pl-6 border"
+								to="/findlostpet"
+							>
+								FIND PET {">"} LOST PET
+							</NavLink>
+							<NavLink
+								onClick={() => setVisible(false)}
+								className="py-2 pl-6 border"
+								to="/findfoundpet"
+							>
+								FIND PET {">"} FOUND PET
+							</NavLink>
+							<NavLink
+								onClick={() => setVisible(false)}
+								className="py-2 pl-6 border"
+								to="/findadoptpet"
+							>
+								FIND PET {">"} ADOPT PET
+							</NavLink>
+							<NavLink
+								onClick={() => setVisible(false)}
+								className="py-2 pl-6 border"
+								to="/findsellpet"
+							>
+								FIND PET {">"} SELL PET
+							</NavLink>
+							<NavLink
+								onClick={() => setVisible(false)}
+								className="py-2 pl-6 border"
+								to="/postlostpet"
+							>
+								POST PET {">"} LOST PET
+							</NavLink>
+							<NavLink
+								onClick={() => setVisible(false)}
+								className="py-2 pl-6 border"
+								to="/postfoundpet"
+							>
+								POST PET {">"} FOUND PET
+							</NavLink>
+							<NavLink
+								onClick={() => setVisible(false)}
+								className="py-2 pl-6 border"
+								to="/postadoptpet"
+							>
+								POST PET {">"} ADOPT PET
+							</NavLink>
+							<NavLink
+								onClick={() => setVisible(false)}
+								className="py-2 pl-6 border"
+								to="/postsellpet"
+							>
+								POST PET {">"} SELL PET
+							</NavLink>
+						</>
+					)}
 					<NavLink
 						onClick={() => setVisible(false)}
 						className="py-2 pl-6 border"
-						to="/lostandfoundpet"
+						to="/findanimalshelter"
 					>
-						FOUND PET {">"} LOST AND FOUND PET
+						PET CARE {">"} FIND ANIMAL SHELTER
 					</NavLink>
 					<NavLink
 						onClick={() => setVisible(false)}
 						className="py-2 pl-6 border"
-						to="/adoptpet"
+						to="/findvetsnearby"
 					>
-						FOUND PET {">"} ADOPT PET
+						PET CARE {">"} FIND VETS NEARBY
 					</NavLink>
-					<NavLink
-						onClick={() => setVisible(false)}
-						className="py-2 pl-6 border"
-						to="/animalshelter"
-					>
-						PET CARE {">"} ANIMAL SHELTER
-					</NavLink>
-					<NavLink
-						onClick={() => setVisible(false)}
-						className="py-2 pl-6 border"
-						to="/vetsnearby"
-					>
-						PET CARE {">"} VETS NEARBY
-					</NavLink>
-
+					{currentStatus === "Login" ? (
+						""
+					) : (
+						<>
+							<NavLink
+								onClick={() => setVisible(false)}
+								className="py-2 pl-6 border"
+								to="/postanimalshelter"
+							>
+								PET CARE {">"} POST ANIMAL SHELTER
+							</NavLink>
+							<NavLink
+								onClick={() => setVisible(false)}
+								className="py-2 pl-6 border"
+								to="/postvetsnearby"
+							>
+								PET CARE {">"} POST VETS NEARBY
+							</NavLink>
+						</>
+					)}
 					<NavLink
 						onClick={() => setVisible(false)}
 						className="py-2 pl-6 border"
 						to="/contact"
 					>
-						CONTACT US
+						CONTACT
 					</NavLink>
 				</div>
 			</div>

@@ -5,14 +5,22 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import AdoptPet from "./pages/AdoptPet";
-import AnimalShelter from "./pages/AnimalShelter";
 import Contact from "./pages/Contact";
-import LostAndFoundPet from "./pages/LostAndFoundPet";
-import VetsNearby from "./pages/VetsNearby";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Product from "./pages/Product";
+import FindAdoptPet from "./pages/FindAdoptPet";
+import FindAnimalShelter from "./pages/FindAnimalShelter";
+import FindFoundPet from "./pages/FindFoundPet";
+import FindLostPet from "./pages/FindLostPet";
+import FindSellPet from "./pages/FindSellPet";
+import FindVetsNearby from "./pages/FindVetsNearby";
+import PostAdoptPet from "./pages/PostAdoptPet";
+import PostAnimalShelter from "./pages/PostAnimalShelter";
+import PostFoundPet from "./pages/PostFoundPet";
+import PostLostPet from "./pages/PostLostPet";
+import PostSellPet from "./pages/PostSellPet";
+import PostVetsNearby from "./pages/PostVetsNearby";
 
 function App() {
 	return (
@@ -24,13 +32,21 @@ function App() {
 				<Route path="/" element={<Home />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
-				<Route path="/adoptpet" element={<AdoptPet />} />
-				<Route path="/animalshelter" element={<AnimalShelter />} />
 				<Route path="/contact" element={<Contact />} />
 				<Route path="/product/:productId" element={<Product />} />
-				<Route path="/lostandfoundpet" element={<LostAndFoundPet />} />
-				<Route path="/vetsnearby" element={<VetsNearby />} />
 				<Route path="/about" element={<About />} />
+				<Route path="/findadoptpet" element={<FindAdoptPet />} />
+				<Route path="/findanimalshelter" element={<FindAnimalShelter />} />
+				<Route path="/findfoundpet" element={<FindFoundPet />} />
+				<Route path="/findlostpet" element={<FindLostPet />} />
+				<Route path="/findsellpet" element={<FindSellPet />} />
+				<Route path="/findvetsnearby" element={<FindVetsNearby />} />
+				<Route path="/postadoptpet" element={<PostAdoptPet />} />
+				<Route path="/postanimalshelter" element={<PostAnimalShelter />} />
+				<Route path="/postfoundpet" element={<PostFoundPet />} />
+				<Route path="/postlostpet" element={<PostLostPet />} />
+				<Route path="/postsellpet" element={<PostSellPet />} />
+				<Route path="/postvetsnearby" element={<PostVetsNearby />} />
 			</Routes>
 			<Footer />
 		</div>

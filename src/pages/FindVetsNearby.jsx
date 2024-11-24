@@ -1,9 +1,8 @@
 import Title from "../components/Title";
-
 import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
 
-export default function AnimalShelter() {
+export default function FindVetsNearby() {
 	return (
 		<div className="container mx-auto">
 			<motion.div
@@ -13,7 +12,7 @@ export default function AnimalShelter() {
 				viewport={{ once: true, amount: 0.9 }}
 				className="text-center text-2xl pt-10 border-t"
 			>
-				<Title text1={"ANIMAL"} text2={"SHELTER"} />
+				<Title text1={"VETS"} text2={"NEARBY"} />
 			</motion.div>
 			<div className="flex flex-col sm:flex-row border my-5 border-grey-400">
 				{/* Hero Left Side */}

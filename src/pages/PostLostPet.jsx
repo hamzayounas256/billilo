@@ -1,7 +1,7 @@
 import Title from "../components/Title";
 import { useForm } from "react-hook-form";
 
-export default function LostAndFoundPet() {
+export default function PostLostPet() {
 	const {
 		register,
 		handleSubmit,
@@ -10,7 +10,6 @@ export default function LostAndFoundPet() {
 	} = useForm();
 
 	const onSubmitHandler = async (data) => {};
-
 	return (
 		<div className="flex flex-col sm:flex-row justify-center gap-4 pt-5 sm:pt-14 min-h-[80vh] border-t">
 			{/* -------------Left Side---------------- */}
