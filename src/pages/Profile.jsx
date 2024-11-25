@@ -1,9 +1,3 @@
-import React from 'react'
-
 export default function Profile() {
-  return (
-    <div>
-      
-    </div>
-  )
+	return <div className="container mx-auto">This is Profile Section</div>;
 }

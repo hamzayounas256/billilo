@@ -49,7 +49,7 @@ export default function Navbar() {
 				localStorage.removeItem("user_email");
 				localStorage.removeItem("userImg");
 
-				// Update status and navigate to login page
+				// Update status and navigate to Login page
 				setCurrentStatus("Login");
 				toast.success("Logout Successfully");
 				navigate("/");
@@ -68,7 +68,6 @@ export default function Navbar() {
 			}
 		}
 	};
-	console.log(name);
 	return (
 		<div className="container mx-auto flex items-center justify-between py-5 font-medium">
 			<Link to="/">
@@ -212,7 +211,7 @@ export default function Navbar() {
 			</ul>
 
 			{/* <div
-				onClick={() => navigate("/login")}
+				onClick={() => navigate("/Login")}
 				className="flex items-center gap-2 text-sm text-orange-700 cursor-pointer"
 			>
 				{userImg ? (
@@ -221,7 +220,7 @@ export default function Navbar() {
 					<img className="w-5" src={assets.profile_icon} alt="profile" />
 				)}
 				{currentStatus === "Login" ? (
-					<p onClick={() => navigate("/login")}>LOGIN</p>
+					<p onClick={() => navigate("/Login")}>Login</p>
 				) : (
 					<p onClick={logoutHandler}>LOGOUT</p>
 				)}
@@ -247,22 +246,31 @@ export default function Navbar() {
 					<hr className="w-2/4 border-none h-[1.5px] bg-orange-700 hidden" />
 					<div className="group-hover:block hidden absolute dropdown-menu right-0 pt-3">
 						<div className="flex flex-col gap-2 w-44 py-3 px-5 bg-slate-100 text-grey-500 rounded">
-							<p className="cursor-pointer hover:text-black">
-								{name ? name.toUpperCase() : ""}
-							</p>
-							<p
-								onClick={() => navigate("/ownpets")}
-								className="cursor-pointer hover:text-black"
-							>
-								OWN PETS
-							</p>
+							{currentStatus === "Login" ? (
+								""
+							) : (
+								<>
+									<p
+										className="cursor-pointer hover:text-black"
+										onClick={() => navigate("/profile")}
+									>
+										{name.toUpperCase()}
+									</p>
+									<p
+										onClick={() => navigate("/ownpets")}
+										className="cursor-pointer hover:text-black"
+									>
+										OWN PETS
+									</p>
+								</>
+							)}
 
 							{currentStatus === "Login" ? (
 								<p
 									className="hover:text-black"
-									onClick={() => navigate("/login")}
+									onClick={() => navigate("/Login")}
 								>
-									LOGIN
+									Login
 								</p>
 							) : (
 								<p className="hover:text-black" onClick={logoutHandler}>
@@ -310,7 +318,7 @@ export default function Navbar() {
 					>
 						ABOUT US
 					</NavLink>
-					{currentStatus === "login" ? (
+					{currentStatus === "Login" ? (
 						""
 					) : (
 						<>

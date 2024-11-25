@@ -5,7 +5,7 @@ export default function PostLostPet() {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors },
+		formState: { errors }, 
 		reset,
 	} = useForm();
 
@@ -18,7 +18,7 @@ export default function PostLostPet() {
 				className="flex flex-col gap-4 w-full sm:max-w-[450px]"
 			>
 				<div className="text-xl text-center sm:text-2xl">
-					<Title text1={"POST YOUR"} text2={"PET"} />
+					<Title text1={"POST YOUR"} text2={"LOST PET"} />
 				</div>
 
 				<input

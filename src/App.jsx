@@ -21,6 +21,8 @@ import PostFoundPet from "./pages/PostFoundPet";
 import PostLostPet from "./pages/PostLostPet";
 import PostSellPet from "./pages/PostSellPet";
 import PostVetsNearby from "./pages/PostVetsNearby";
+import Profile from "./pages/Profile";
+import OwnPets from "./pages/OwnPets";
 
 function App() {
 	return (
@@ -35,12 +37,16 @@ function App() {
 				<Route path="/contact" element={<Contact />} />
 				<Route path="/product/:productId" element={<Product />} />
 				<Route path="/about" element={<About />} />
+				<Route path="/profile" element={<Profile />} />
+				<Route path="/ownpets" element={<OwnPets />} />
+
 				<Route path="/findadoptpet" element={<FindAdoptPet />} />
 				<Route path="/findanimalshelter" element={<FindAnimalShelter />} />
 				<Route path="/findfoundpet" element={<FindFoundPet />} />
 				<Route path="/findlostpet" element={<FindLostPet />} />
 				<Route path="/findsellpet" element={<FindSellPet />} />
 				<Route path="/findvetsnearby" element={<FindVetsNearby />} />
+
 				<Route path="/postadoptpet" element={<PostAdoptPet />} />
 				<Route path="/postanimalshelter" element={<PostAnimalShelter />} />
 				<Route path="/postfoundpet" element={<PostFoundPet />} />
