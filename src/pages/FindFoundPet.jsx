@@ -52,17 +52,18 @@ export default function FindFoundPet() {
 	// Fetch dashboard data
 	const fetchDashboardData = async () => {
 		try {
-			console.log("Fetching with Range:", priceRange, startDate, endDate); // Debug log
+			// console.log("Fetching with Range:", priceRange, startDate, endDate); // Debug log
 			const response = await axios.get(
-				"https://petapp1503.pythonanywhere.com/petapp/dashboard/",
+				"https://petapp1503.pythonanywhere.com/petapp/find-lost-dashboard/",
 				{
 					params: {
-						category: selectedCategory,
 						user_id: uid,
-						start_price: priceRange.start,
-						end_price: priceRange.end,
-						start_date: startDate,
-						end_date: endDate,
+						status: "find",
+						// category: selectedCategory,
+						// start_price: priceRange.start,
+						// end_price: priceRange.end,
+						// start_date: startDate,
+						// end_date: endDate,
 					},
 				}
 			);

@@ -37,7 +37,7 @@ export default function FindLostPet() {
 		const value = Number(e.target.value);
 		setPriceRange({ start: 0, end: value }); // Directly set the range
 		setSliderValue(value);
-		console.log("Updated Range:", { start: 0, end: value }); // Debug log
+		// console.log("Updated Range:", { start: 0, end: value }); // Debug log
 	};
 
 	// Handle date change
@@ -52,13 +52,14 @@ export default function FindLostPet() {
 	// Fetch dashboard data
 	const fetchDashboardData = async () => {
 		try {
-			console.log("Fetching with Range:", priceRange, startDate, endDate); // Debug log
+			// console.log("Fetching with Range:", priceRange, startDate, endDate); // Debug log
 			const response = await axios.get(
-				"https://petapp1503.pythonanywhere.com/petapp/dashboard/",
+				"https://petapp1503.pythonanywhere.com/petapp/find-lost-dashboard/",
 				{
 					params: {
-						category: selectedCategory,
 						user_id: uid,
+						status: "lost",
+						category: selectedCategory,
 						start_price: priceRange.start,
 						end_price: priceRange.end,
 						start_date: startDate,
