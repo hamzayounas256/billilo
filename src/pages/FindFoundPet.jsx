@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import ProductItem from "../components/ProductItem";
 import Title from "../components/Title";
 import axios from "axios";
 import { assets } from "../assets/assets";
+import ProductItemFind from "../components/ProductItemFind";
 
 export default function FindFoundPet() {
 	const [products, setProducts] = useState([]);
@@ -236,7 +236,7 @@ export default function FindFoundPet() {
 				</div>
 				<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 gap-y-6">
 					{products.map((item) => (
-						<ProductItem
+						<ProductItemFind
 							key={item.id}
 							id={item.id}
 							image={item.images}

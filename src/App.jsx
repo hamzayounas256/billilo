@@ -8,21 +8,27 @@ import Footer from "./components/Footer";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Product from "./pages/Product";
+import Profile from "./pages/Profile";
+import OwnPets from "./pages/OwnPets";
+import ProductLost from "./pages/ProductLost";
+import ProductFind from "./pages/ProductFind";
+
 import FindAdoptPet from "./pages/FindAdoptPet";
 import FindAnimalShelter from "./pages/FindAnimalShelter";
 import FindFoundPet from "./pages/FindFoundPet";
 import FindLostPet from "./pages/FindLostPet";
 import FindSellPet from "./pages/FindSellPet";
 import FindVetsNearby from "./pages/FindVetsNearby";
+
 import PostAdoptPet from "./pages/PostAdoptPet";
 import PostAnimalShelter from "./pages/PostAnimalShelter";
 import PostFoundPet from "./pages/PostFoundPet";
 import PostLostPet from "./pages/PostLostPet";
 import PostSellPet from "./pages/PostSellPet";
 import PostVetsNearby from "./pages/PostVetsNearby";
-import Profile from "./pages/Profile";
-import OwnPets from "./pages/OwnPets";
+import ProductSell from "./pages/ProductSell";
+import ProductAdopt from "./pages/ProductAdopt";
+import Hero from "./components/Hero";
 
 function App() {
 	return (
@@ -32,10 +38,15 @@ function App() {
 			<Navbar />
 			<Routes>
 				<Route path="/" element={<Home />} />
+				<Route path="/hero" element={<Hero />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
 				<Route path="/contact" element={<Contact />} />
-				<Route path="/product/:productId" element={<Product />} />
+				<Route path="/productsell/:productId" element={<ProductSell />} />
+				<Route path="/productadopt/:productId" element={<ProductAdopt />} />
+				<Route path="/productlost/:productId" element={<ProductLost />} />
+				<Route path="/productfind/:productId" element={<ProductFind />} />
+
 				<Route path="/about" element={<About />} />
 				<Route path="/profile" element={<Profile />} />
 				<Route path="/ownpets" element={<OwnPets />} />

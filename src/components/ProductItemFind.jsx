@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-export default function ProductItem({
+export default function ProductItemFind({
 	id,
 	name,
 	image,
@@ -8,7 +8,7 @@ export default function ProductItem({
 	location,
 }) {
 	return (
-		<Link className="text-gray-700 cursor-pointer" to={`/product/${id}`}>
+		<Link className="text-gray-700 cursor-pointer" to={`/productfind/${id}`}>
 			{/* <div className="text-gray-700 cursor-pointer"> */}
 			<div className="overflow-hidden h-64 w-full flex items-center justify-center bg-gray-200">
 				<img

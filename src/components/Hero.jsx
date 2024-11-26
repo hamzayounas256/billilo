@@ -7,7 +7,7 @@ export default function Hero() {
 		<div className="flex flex-col sm:flex-row border-t bg-[#FFBE00]">
 			{/* Hero Left Side */}
 			<motion.div
-				variants={fadeIn("right", 0.2)}
+				variants={fadeIn("down", 0.2)}
 				initial="hidden"
 				whileInView={"show"}
 				viewport={{ once: true, amount: 0.9 }}

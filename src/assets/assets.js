@@ -21,6 +21,7 @@ import call_icon from "./call.png";
 import location_icon from "./location.png";
 import playstore_icon from "./playstore_icon.png";
 import appstore_icon from "./appstore_icon.png";
+import title_icon from "./title_icon.png";
 
 export const assets = {
 	logo,
@@ -46,4 +47,5 @@ export const assets = {
 	location_icon,
 	playstore_icon,
 	appstore_icon,
+	title_icon,
 };

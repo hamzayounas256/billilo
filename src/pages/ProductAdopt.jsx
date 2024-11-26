@@ -2,11 +2,11 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AnimalContext } from "../context/AnimalContext";
-import { assets } from "../assets/assets";
+// import { assets } from "../assets/assets";
 
-export default function Product() {
+export default function ProductAdopt() {
 	const { productId } = useParams(); // productId from URL params
-	const { currency } = useContext(AnimalContext);
+	const { currency, navigate } = useContext(AnimalContext);
 	const [products, setProducts] = useState([]);
 	const [image, setImage] = useState([]);
 	const [productData, setProductData] = useState(null); // Save matched product here
@@ -20,6 +20,7 @@ export default function Product() {
 				{
 					params: {
 						user_id: uid,
+						status: "Adopt",
 					},
 				}
 			);
@@ -103,10 +104,10 @@ export default function Product() {
 					</p>
 
 					<button
-						// onClick={() => addToCart(productData._id, size)}
+						onClick={() => navigate("/hero")}
 						className="bg-black text-white px-8 py-3 text-sm active:bg-gray-700"
 					>
-						BUY THIS PET
+						MORE INFO...
 					</button>
 					<div className="flex flex-row align-middle mt-5 text-md border px-3 py-3">
 						<p>

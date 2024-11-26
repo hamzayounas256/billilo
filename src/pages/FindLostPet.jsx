@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ProductItem from "../components/ProductItem";
+import ProductItemFindLoss from "../components/ProductItemLost";
 import Title from "../components/Title";
 import axios from "axios";
 import { assets } from "../assets/assets";
@@ -59,17 +59,17 @@ export default function FindLostPet() {
 					params: {
 						user_id: uid,
 						status: "lost",
-						category: selectedCategory,
-						start_price: priceRange.start,
-						end_price: priceRange.end,
-						start_date: startDate,
-						end_date: endDate,
+						// category: selectedCategory,
+						// start_price: priceRange.start,
+						// end_price: priceRange.end,
+						// start_date: startDate,
+						// end_date: endDate,
 					},
 				}
 			);
 
-			if (response.data.success) {
-				console.log("Fetched Products:", response.data.data); // Debug log
+			if (response.data.success) { 
+				// console.log("Fetched Products:", response.data.data);
 				setProducts(response.data.data);
 			} else {
 				console.error("Error Fetching Products:", response.data.message);
@@ -236,7 +236,7 @@ export default function FindLostPet() {
 				</div>
 				<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 gap-y-6">
 					{products.map((item) => (
-						<ProductItem
+						<ProductItemFindLoss
 							key={item.id}
 							id={item.id}
 							image={item.images}
