@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
 
 export default function Signup() {
-	const { navigate } = useContext(AnimalContext);
+	const { navigate, apiLink } = useContext(AnimalContext);
 	const [showPassword, setShowPassword] = useState(false);
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -25,7 +25,7 @@ export default function Signup() {
 		try {
 			// API request
 			const response = await axios.post(
-				"https://petapp1503.pythonanywhere.com/petapp/register-user/",
+				apiLink + "/register-user/",
 				{
 					first_name: data.first_name,
 					last_name: data.last_name,

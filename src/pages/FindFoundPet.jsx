@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Title from "../components/Title";
 import axios from "axios";
 import { assets } from "../assets/assets";
 import ProductItemFind from "../components/ProductItemFind";
+import { AnimalContext } from "../context/AnimalContext";
 
 export default function FindFoundPet() {
+	const { apiLink } = useContext(AnimalContext);
 	const [products, setProducts] = useState([]);
 	const [categories, setCategories] = useState([]);
 	const [selectedCategory, setSelectedCategory] = useState("");
@@ -53,20 +55,17 @@ export default function FindFoundPet() {
 	const fetchDashboardData = async () => {
 		try {
 			// console.log("Fetching with Range:", priceRange, startDate, endDate); // Debug log
-			const response = await axios.get(
-				"https://petapp1503.pythonanywhere.com/petapp/find-lost-dashboard/",
-				{
-					params: {
-						user_id: uid,
-						status: "find",
-						// category: selectedCategory,
-						// start_price: priceRange.start,
-						// end_price: priceRange.end,
-						// start_date: startDate,
-						// end_date: endDate,
-					},
-				}
-			);
+			const response = await axios.get(apiLink + "/find-lost-dashboard/", {
+				params: {
+					user_id: uid,
+					status: "find",
+					// category: selectedCategory,
+					// start_price: priceRange.start,
+					// end_price: priceRange.end,
+					// start_date: startDate,
+					// end_date: endDate,
+				},
+			});
 
 			if (response.data.success) {
 				console.log("Fetched Products:", response.data.data); // Debug log
@@ -86,9 +85,7 @@ export default function FindFoundPet() {
 	// Fetch categories
 	const fetchCategories = async () => {
 		try {
-			const response = await axios.get(
-				"https://petapp1503.pythonanywhere.com/petapp/get-category/"
-			);
+			const response = await axios.get(apiLink + "/get-category/");
 
 			if (response.status === 200) {
 				setCategories(response.data.data);

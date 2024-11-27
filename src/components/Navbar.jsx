@@ -9,7 +9,7 @@ export default function Navbar() {
 
 	const [currentStatus, setCurrentStatus] = useState("Login");
 
-	const { navigate } = useContext(AnimalContext);
+	const { navigate, apiLink } = useContext(AnimalContext);
 
 	const accessToken = localStorage.getItem("access_token");
 	const id = localStorage.getItem("id");
@@ -26,7 +26,7 @@ export default function Navbar() {
 	const logoutHandler = async () => {
 		try {
 			const response = await axios.post(
-				"https://petapp1503.pythonanywhere.com/petapp/logout/",
+				apiLink + "/logout/",
 				{
 					user_id: id,
 					access_token: accessToken,

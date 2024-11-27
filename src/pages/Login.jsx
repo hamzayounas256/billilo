@@ -8,7 +8,7 @@ import { fadeIn } from "../variants";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function Login() {
-	const { navigate } = useContext(AnimalContext);
+	const { navigate, apiLink } = useContext(AnimalContext);
 	const [showPassword, setShowPassword] = useState(false);
 	const {
 		register,
@@ -20,7 +20,7 @@ export default function Login() {
 	const onSubmitHandler = async (data) => {
 		try {
 			const response = await axios.post(
-				"https://petapp1503.pythonanywhere.com/petapp/login/",
+				apiLink + "/login/",
 				{
 					email: data.email,
 					password: data.password,

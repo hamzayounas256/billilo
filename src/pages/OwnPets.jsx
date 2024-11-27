@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Title from "../components/Title";
 import axios from "axios";
 import { assets } from "../assets/assets";
 import ProductOwn from "../components/ProductOwn";
+import { AnimalContext } from "../context/AnimalContext";
 
 export default function OwnPets() {
+	const { apiLink } = useContext(AnimalContext);
 	const [products, setProducts] = useState([]);
 
 	const uid = localStorage.getItem("id");
@@ -13,14 +15,11 @@ export default function OwnPets() {
 	const fetchDashboardData = async () => {
 		try {
 			// console.log("Fetching with Range:", priceRange, startDate, endDate); // Debug log
-			const response = await axios.get(
-				"https://petapp1503.pythonanywhere.com/petapp/get-pet/",
-				{
-					params: {
-						user_id: uid,
-					},
-				}
-			);
+			const response = await axios.get(apiLink + "/get-pet/", {
+				params: {
+					user_id: uid,
+				},
+			});
 
 			if (response.data.success) {
 				console.log("Fetched Products:", response.data.data); // Debug log

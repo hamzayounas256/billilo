@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Title from "../components/Title";
 import axios from "axios";
 import { assets } from "../assets/assets";
 import ProductItemAdopt from "../components/ProductItemAdopt";
+import { AnimalContext } from "../context/AnimalContext";
 
 export default function FindAdoptPet() {
+	const { apiLink } = useContext(AnimalContext);
 	const [products, setProducts] = useState([]);
 	const [categories, setCategories] = useState([]);
 	const [selectedCategory, setSelectedCategory] = useState("");
+	const [search, setSearch] = useState("");
 	const [showFilter, setShowFilter] = useState(false);
 
 	const [priceRange, setPriceRange] = useState({
@@ -37,7 +40,6 @@ export default function FindAdoptPet() {
 		const value = Number(e.target.value);
 		setPriceRange({ start: 0, end: value }); // Directly set the range
 		setSliderValue(value);
-		console.log("Updated Range:", { start: 0, end: value }); // Debug log
 	};
 
 	// Handle date change
@@ -52,24 +54,20 @@ export default function FindAdoptPet() {
 	// Fetch dashboard data
 	const fetchDashboardData = async () => {
 		try {
-			console.log("Fetching with Range:", priceRange, startDate, endDate); // Debug log
-			const response = await axios.get(
-				"https://petapp1503.pythonanywhere.com/petapp/dashboard/",
-				{
-					params: {
-						category: selectedCategory,
-						user_id: uid,
-						start_price: priceRange.start,
-						end_price: priceRange.end,
-						start_date: startDate,
-						end_date: endDate,
-						status: "Adopt",
-					},
-				}
-			);
+			const response = await axios.get(apiLink + "/dashboard/", {
+				params: {
+					category: selectedCategory,
+					user_id: uid,
+					start_price: priceRange.start,
+					end_price: priceRange.end,
+					start_date: startDate,
+					end_date: endDate,
+					name: search,
+					status: "Adopt",
+				},
+			});
 
 			if (response.data.success) {
-				console.log("Fetched Products:", response.data.data); // Debug log
 				setProducts(response.data.data);
 			} else {
 				console.error("Error Fetching Products:", response.data.message);
@@ -81,14 +79,12 @@ export default function FindAdoptPet() {
 
 	useEffect(() => {
 		fetchDashboardData(); // Trigger fetch on filter changes
-	}, [priceRange, selectedCategory, startDate, endDate]);
+	}, [priceRange, selectedCategory, startDate, endDate, search]);
 
 	// Fetch categories
 	const fetchCategories = async () => {
 		try {
-			const response = await axios.get(
-				"https://petapp1503.pythonanywhere.com/petapp/get-category/"
-			);
+			const response = await axios.get(apiLink + "/get-category/");
 
 			if (response.status === 200) {
 				setCategories(response.data.data);
@@ -124,6 +120,24 @@ export default function FindAdoptPet() {
 						alt="Dropdown Icon"
 					/>
 				</p>
+
+				{/* Search Filter */}
+				<div
+					className={`border border-gray-300 pl-5 py-3 mt-6 ${
+						showFilter ? "" : "hidden"
+					} sm:block`}
+				>
+					<p className="mb-3 text-sm font-medium">BY NAME</p>
+					<div className="flex flex-col gap-4 text-sm font-light">
+						<input
+							className="w-3/4 mx-auto border border-gray-400"
+							type="text"
+							value={search}
+							placeholder="Search here..."
+							onChange={(e) => setSearch(e.target.value)}
+						/>
+					</div>
+				</div>
 
 				{/* Price Filter */}
 				<div

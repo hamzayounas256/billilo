@@ -6,7 +6,7 @@ import { AnimalContext } from "../context/AnimalContext";
 
 export default function ProductAdopt() {
 	const { productId } = useParams(); // productId from URL params
-	const { currency, navigate } = useContext(AnimalContext);
+	const { currency, navigate, apiLink } = useContext(AnimalContext);
 	const [products, setProducts] = useState([]);
 	const [image, setImage] = useState([]);
 	const [productData, setProductData] = useState(null); // Save matched product here
@@ -15,15 +15,12 @@ export default function ProductAdopt() {
 	// Fetch Dashboard Data
 	const fetchDashboardData = async () => {
 		try {
-			const response = await axios.get(
-				"https://petapp1503.pythonanywhere.com/petapp/dashboard/",
-				{
-					params: {
-						user_id: uid,
-						status: "Adopt",
-					},
-				}
-			);
+			const response = await axios.get(apiLink + "/dashboard/", {
+				params: {
+					user_id: uid,
+					status: "Adopt",
+				},
+			});
 
 			if (response.data.success) {
 				setProducts(response.data.data); // Save API data in state

@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Title from "../components/Title";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { AnimalContext } from "../context/AnimalContext";
 
 export default function PostLostPet() {
+	const { apiLink } = useContext(AnimalContext);
 	const uid = localStorage.getItem("id");
 	const personName = localStorage.getItem("user_name");
 	// console.log(uid);
@@ -13,9 +15,7 @@ export default function PostLostPet() {
 
 	const fetchCategories = async () => {
 		try {
-			const response = await axios.get(
-				"https://petapp1503.pythonanywhere.com/petapp/get-category/"
-			);
+			const response = await axios.get(apiLink + "/get-category/");
 
 			if (response.status === 200) {
 				setCategories(response.data.data);
@@ -82,13 +82,10 @@ export default function PostLostPet() {
 			formData.append("user_id", uid);
 
 			// API Call
-			const response = await fetch(
-				"https://petapp1503.pythonanywhere.com/petapp/add-find-lost/",
-				{
-					method: "POST",
-					body: formData,
-				}
-			);
+			const response = await fetch(apiLink + "/add-find-lost/", {
+				method: "POST",
+				body: formData,
+			});
 
 			if (response.ok) {
 				const result = await response.json();

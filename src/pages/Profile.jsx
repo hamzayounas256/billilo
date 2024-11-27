@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { AnimalContext } from "../context/AnimalContext";
 
 export default function Profile() {
+	const { apiLink } = useContext(AnimalContext);
 	const user = JSON.parse(localStorage.getItem("user")) || {};
 	const {
 		id: userId,
@@ -83,10 +85,7 @@ export default function Profile() {
 			}
 			formData.append("user_id", userId); // Ensure the backend expects 'user_id'
 
-			const response = await axios.post(
-				"https://petapp1503.pythonanywhere.com/petapp/update-user/",
-				formData
-			);
+			const response = await axios.post(apiLink + "/update-user/", formData);
 
 			if (response.status === 200) {
 				toast.success("Profile updated successfully!");

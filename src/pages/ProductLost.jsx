@@ -6,7 +6,7 @@ import { AnimalContext } from "../context/AnimalContext";
 
 export default function ProductLost() {
 	const { productId } = useParams(); // productId from URL params
-	const { currency, navigate } = useContext(AnimalContext);
+	const { currency, navigate, apiLink } = useContext(AnimalContext);
 	const [products, setProducts] = useState([]);
 	const [image, setImage] = useState([]);
 	const [productData, setProductData] = useState(null); // Save matched product here
@@ -17,15 +17,12 @@ export default function ProductLost() {
 	// Fetch Dashboard Data
 	const fetchDashboardData = async () => {
 		try {
-			const response = await axios.get(
-				"https://petapp1503.pythonanywhere.com/petapp/find-lost-dashboard/",
-				{
-					params: {
-						user_id: uid,
-						status: "lost",
-					},
-				}
-			);
+			const response = await axios.get(apiLink + "/find-lost-dashboard/", {
+				params: {
+					user_id: uid,
+					status: "lost",
+				},
+			});
 
 			if (response.data.success) {
 				// console.log(response);
