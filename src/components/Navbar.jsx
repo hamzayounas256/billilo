@@ -42,6 +42,7 @@ export default function Navbar() {
 				// console.log("Logout successful");
 
 				// Remove user data from localStorage
+				localStorage.removeItem("user");
 				localStorage.removeItem("access_token");
 				localStorage.removeItem("refresh_token");
 				localStorage.removeItem("user_name");

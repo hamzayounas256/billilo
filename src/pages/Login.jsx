@@ -1,13 +1,15 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { AnimalContext } from "../context/AnimalContext";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function Login() {
 	const { navigate } = useContext(AnimalContext);
+	const [showPassword, setShowPassword] = useState(false);
 	const {
 		register,
 		handleSubmit,
@@ -44,6 +46,7 @@ export default function Login() {
 				localStorage.setItem("id", id);
 				localStorage.setItem("user_email", email);
 				localStorage.setItem("userImg", image);
+				localStorage.setItem("user", JSON.stringify(response.data.data));
 
 				// Navigate to dashboard on success
 				navigate("/");
@@ -105,25 +108,28 @@ export default function Login() {
 					})}
 				/>
 
-				{/* Password Input */}
-				<motion.input
+				<motion.div
 					variants={fadeIn("up", 0.2)}
 					initial="hidden"
 					whileInView={"show"}
 					viewport={{ once: true, amount: 0.9 }}
-					type="password"
-					className={`w-full px-3 py-2 border ${
-						errors.password ? "border-red-500" : "border-gray-800"
-					}`}
-					placeholder="Password"
-					{...register("password", {
-						required: "Password is required",
-						// minLength: {
-						// 	value: 8,
-						// 	message: "Password must be at least 8 characters",
-						// },
-					})}
-				/>
+					className="w-full relative"
+				>
+					<input
+						type={showPassword ? "text" : "password"}
+						className={`w-full px-3 py-2 border ${
+							errors.password ? "border-red-500" : "border-gray-800"
+						}`}
+						placeholder="New Password"
+						{...register("password", {})}
+					/>
+					<span
+						className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+						onClick={() => setShowPassword((prev) => !prev)}
+					>
+						{showPassword ? <FaEyeSlash /> : <FaEye />}
+					</span>
+				</motion.div>
 
 				<div className="w-full flex justify-between text-sm mt-[-8px]">
 					<p className="cursor-pointer">Forgot Your Password?</p>

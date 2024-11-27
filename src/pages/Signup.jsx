@@ -1,14 +1,16 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { AnimalContext } from "../context/AnimalContext";
 import { toast } from "react-toastify";
-
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
 
 export default function Signup() {
 	const { navigate } = useContext(AnimalContext);
+	const [showPassword, setShowPassword] = useState(false);
+	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
 	const {
 		register,
@@ -51,7 +53,6 @@ export default function Signup() {
 			}
 		} catch (error) {
 			if (error.response && error.response.status === 400) {
-				reset();
 				toast.error(error.response.data.message || "Registration failed.");
 			} else {
 				toast.error("An error occurred during signup. Please try again.");
@@ -168,41 +169,61 @@ export default function Signup() {
 				/>
 			</motion.div>
 
-			{/* Password and Confirm Password */}
-			<motion.input
+			{/* Password */}
+			<motion.div
 				variants={fadeIn("up", 0.2)}
 				initial="hidden"
 				whileInView={"show"}
 				viewport={{ once: true, amount: 0.9 }}
-				type="password"
-				className={`w-full px-3 py-2 border ${
-					errors.password ? "border-red-500" : "border-gray-800"
-				}`}
-				placeholder="Password"
-				{...register("password", {
-					required: "Password is required",
-					minLength: {
-						value: 8,
-						message: "Password must be at least 8 characters",
-					},
-				})}
-			/>
-			<motion.input
+				className="w-full relative"
+			>
+				<input
+					type={showPassword ? "text" : "password"}
+					className={`w-full px-3 py-2 border ${
+						errors.password ? "border-red-500" : "border-gray-800"
+					}`}
+					placeholder="New Password"
+					{...register("password", {
+						minLength: {
+							value: 8,
+							message: "Password must be at least 8 characters",
+						},
+					})}
+				/>
+				<span
+					className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+					onClick={() => setShowPassword((prev) => !prev)}
+				>
+					{showPassword ? <FaEyeSlash /> : <FaEye />}
+				</span>
+			</motion.div>
+
+			{/* Confirm Password */}
+			<motion.div
 				variants={fadeIn("up", 0.2)}
 				initial="hidden"
 				whileInView={"show"}
 				viewport={{ once: true, amount: 0.9 }}
-				type="password"
-				className={`w-full px-3 py-2 border ${
-					errors.confirm_password ? "border-red-500" : "border-gray-800"
-				}`}
-				placeholder="Confirm Password"
-				{...register("confirm_password", {
-					required: "Please confirm your password",
-					validate: (value) =>
-						value === getValues("password") || "Passwords do not match",
-				})}
-			/>
+				className="w-full relative"
+			>
+				<input
+					type={showConfirmPassword ? "text" : "password"}
+					className={`w-full px-3 py-2 border ${
+						errors.confirm_password ? "border-red-500" : "border-gray-800"
+					}`}
+					placeholder="Confirm Password"
+					{...register("confirm_password", {
+						validate: (value) =>
+							value === getValues("password") || "Passwords do not match",
+					})}
+				/>
+				<span
+					className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+					onClick={() => setShowConfirmPassword((prev) => !prev)}
+				>
+					{showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+				</span>
+			</motion.div>
 
 			{/* Profile Image */}
 			<motion.input

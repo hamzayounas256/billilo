@@ -1,11 +1,36 @@
+import { useEffect, useState } from "react";
 import Title from "../components/Title";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 export default function PostLostPet() {
 	const uid = localStorage.getItem("id");
 	const personName = localStorage.getItem("user_name");
-	console.log(uid);
+	// console.log(uid);
+
+	const [categories, setCategories] = useState([]);
+
+	const fetchCategories = async () => {
+		try {
+			const response = await axios.get(
+				"https://petapp1503.pythonanywhere.com/petapp/get-category/"
+			);
+
+			if (response.status === 200) {
+				setCategories(response.data.data);
+				// console.log(response.data.data);
+			} else {
+				console.error(response.data.message || "Failed to fetch categories");
+			}
+		} catch (err) {
+			console.error("API Error:", err.message);
+		}
+	};
+
+	useEffect(() => {
+		fetchCategories();
+	}, []);
 
 	const {
 		register,
@@ -94,12 +119,18 @@ export default function PostLostPet() {
 					placeholder="Title"
 					{...register("name", { required: "Title is required" })}
 				/>
-				<input
-					className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
-					type="text"
-					placeholder="Category"
+				<select
+					id="categ_id"
+					className=" border border-gray-300 text-gray-900 rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
 					{...register("categ_id", { required: "Category is required" })}
-				/>
+				>
+					<option selected>Choose a Category</option>
+					{categories.map((item, index) => (
+						<option key={index} value={item.id}>
+							{item.name}
+						</option>
+					))}
+				</select>
 				<div className="flex gap-3">
 					<input
 						className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
@@ -110,8 +141,8 @@ export default function PostLostPet() {
 					<input
 						className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
 						type="text"
-						placeholder="State"
-						{...register("color")}
+						placeholder="Colour"
+						{...register("color", { required: "Colour is Required" })}
 					/>
 				</div>
 				<div className="flex gap-3">
@@ -140,19 +171,27 @@ export default function PostLostPet() {
 					className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
 					rows={3}
 					placeholder="Description"
-					{...register("description")}
+					{...register("description", { required: "Description is Required" })}
+				/>
+				<input
+					className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
+					type="text"
+					// placeholder=""
+					value={personName.toUpperCase()}
+					readOnly
+					{...register("person_name")}
 				/>
 				<input
 					className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
 					type="text"
 					placeholder="Nearest Place"
-					{...register("location")}
+					{...register("location", { required: "Location is Required" })}
 				/>
 				<input
 					className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
 					type="text"
 					placeholder="Address"
-					{...register("address")}
+					{...register("address", { required: "Address is Required" })}
 				/>
 				<input
 					className="border border-gray-300 rounded py-1.5 px-3.5 w-full"

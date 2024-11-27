@@ -63,6 +63,7 @@ export default function FindSellPet() {
 						end_price: priceRange.end,
 						start_date: startDate,
 						end_date: endDate,
+						status: "Sale",
 					},
 				}
 			);

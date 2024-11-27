@@ -99,9 +99,9 @@ export default function ProductAdopt() {
 						{": "}
 						{productData.price.toLocaleString()}
 					</p>
-					<p className="my-5 text-gray-500 md:w-4/5">
+					{/* <p className="my-5 text-gray-500 md:w-4/5">
 						Description: {productData.description}
-					</p>
+					</p> */}
 
 					<button
 						onClick={() => navigate("/hero")}
