@@ -15,7 +15,7 @@ export default function FindAdoptPet() {
 
 	const [priceRange, setPriceRange] = useState({
 		start: 0,
-		end: 50000,
+		end: 500000,
 	});
 	const [sliderValue, setSliderValue] = useState(25000); // Midpoint of range
 
@@ -50,24 +50,23 @@ export default function FindAdoptPet() {
 	const handleEndDateChange = (e) => {
 		setEndDate(e.target.value);
 	};
-
+	// console.log(uid);
 	// Fetch dashboard data
 	const fetchDashboardData = async () => {
 		try {
 			const response = await axios.get(apiLink + "/dashboard/", {
 				params: {
-					category: selectedCategory,
+					// category: selectedCategory,
 					user_id: uid,
-					start_price: priceRange.start,
-					end_price: priceRange.end,
-					start_date: startDate,
-					end_date: endDate,
-					name: search,
+					// start_date: startDate,
+					// end_date: endDate,
+					// name: search,
 					status: "Adopt",
 				},
 			});
 
 			if (response.data.success) {
+				// console.log(response.data.data);
 				setProducts(response.data.data);
 			} else {
 				console.error("Error Fetching Products:", response.data.message);
@@ -79,7 +78,7 @@ export default function FindAdoptPet() {
 
 	useEffect(() => {
 		fetchDashboardData(); // Trigger fetch on filter changes
-	}, [priceRange, selectedCategory, startDate, endDate, search]);
+	}, [selectedCategory, startDate, endDate, search]);
 
 	// Fetch categories
 	const fetchCategories = async () => {
@@ -140,7 +139,7 @@ export default function FindAdoptPet() {
 				</div>
 
 				{/* Price Filter */}
-				<div
+				{/* <div
 					className={`border border-gray-300 pl-5 py-3 mt-6 ${
 						showFilter ? "" : "hidden"
 					} sm:block`}
@@ -176,7 +175,7 @@ export default function FindAdoptPet() {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> */}
 
 				{/* Date Filter */}
 				<div

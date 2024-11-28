@@ -59,7 +59,7 @@ export default function FindLostPet() {
 				params: {
 					user_id: uid,
 					status: "lost",
-					// category: selectedCategory,
+					category: selectedCategory,
 					// start_price: priceRange.start,
 					// end_price: priceRange.end,
 					// start_date: startDate,
@@ -80,7 +80,7 @@ export default function FindLostPet() {
 
 	useEffect(() => {
 		fetchDashboardData(); // Trigger fetch on filter changes
-	}, [priceRange, selectedCategory, startDate, endDate]);
+	}, [selectedCategory]);
 
 	// Fetch categories
 	const fetchCategories = async () => {
@@ -121,76 +121,6 @@ export default function FindLostPet() {
 						alt="Dropdown Icon"
 					/>
 				</p>
-
-				{/* Price Filter */}
-				<div
-					className={`border border-gray-300 pl-5 py-3 mt-6 ${
-						showFilter ? "" : "hidden"
-					} sm:block`}
-				>
-					<p className="mb-3 text-sm font-medium">BY PRICE</p>
-					<div className="flex flex-col gap-4 text-sm font-light">
-						<input
-							className="w-3/4 mx-auto slider"
-							type="range"
-							min="0"
-							max="50000"
-							value={sliderValue}
-							onChange={handleRangeChange}
-						/>
-						<div className="flex justify-between items-center w-3/4 mx-auto">
-							<div className="flex flex-col items-center">
-								<label className="text-xs text-orange-500">Start Price</label>
-								<input
-									className="w-20 border px-2 py-1 text-center"
-									type="number"
-									value={priceRange.start}
-									readOnly
-								/>
-							</div>
-							<div className="flex flex-col items-center">
-								<label className="text-xs text-orange-500">End Price</label>
-								<input
-									className="w-20 border px-2 py-1 text-center"
-									type="number"
-									value={priceRange.end}
-									readOnly
-								/>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				{/* Date Filter */}
-				<div
-					className={`border border-gray-300 pl-5 py-3 mt-6 ${
-						showFilter ? "" : "hidden"
-					} sm:block`}
-				>
-					<p className="mb-3 text-sm font-medium">BY DATES</p>
-					<div className="flex flex-col gap-4 text-sm font-light">
-						<div className="flex flex-col items-center w-full mx-auto">
-							<div className="flex flex-col items-center">
-								<label className="text-xs text-orange-500">Start Date</label>
-								<input
-									className="w-22 border py-1 text-center"
-									type="date"
-									value={startDate}
-									onChange={handleStartDateChange}
-								/>
-							</div>
-							<div className="flex flex-col items-center">
-								<label className="text-xs text-orange-500">End Date</label>
-								<input
-									className="w-22 border py-1 text-center"
-									type="date"
-									value={endDate}
-									onChange={handleEndDateChange}
-								/>
-							</div>
-						</div>
-					</div>
-				</div>
 
 				{/* Category Filter */}
 				<div

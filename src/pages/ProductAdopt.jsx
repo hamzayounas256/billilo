@@ -91,11 +91,11 @@ export default function ProductAdopt() {
 					<p className="mt-5 text-md font-medium">
 						Address: {productData.address}
 					</p>
-					<p className="mt-5 text-3xl font-medium">
+					{/* <p className="mt-5 text-3xl font-medium">
 						{currency}
 						{": "}
 						{productData.price.toLocaleString()}
-					</p>
+					</p> */}
 					{/* <p className="my-5 text-gray-500 md:w-4/5">
 						Description: {productData.description}
 					</p> */}

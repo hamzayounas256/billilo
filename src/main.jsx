@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import AnimalContextProvider from "./context/AnimalContext.jsx";
 
 createRoot(document.getElementById("root")).render(
-	<BrowserRouter>
+	<BrowserRouter basename="/">
 		<AnimalContextProvider>
 			<App />
 		</AnimalContextProvider>
