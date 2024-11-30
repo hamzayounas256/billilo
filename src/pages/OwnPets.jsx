@@ -58,7 +58,7 @@ export default function OwnPets() {
 	}, []);
 
 	return (
-		<div className="container mx-auto flex flex-col justify-center sm:flex-row gap-1 sm:gap-10 pt-10 border-t">
+		<div className="container mx-auto px-2 flex flex-col justify-center sm:flex-row gap-1 sm:gap-10 pt-10 border-t">
 			{/* Products Section */}
 			<div className="md:mx-2">
 				<div className="flex justify-center text-base sm:text-2xl mb-4">

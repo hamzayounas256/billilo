@@ -57,7 +57,7 @@ export default function ProductAdopt() {
 	}, [products, productId]);
 
 	return productData ? (
-		<div className="border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-500">
+		<div className="border-t-2 pt-10 px-2 transition-opacity ease-in duration-500 opacity-500">
 			{/* product Data  */}
 			<div className="flex gap-12 sm:gap-12 flex-col sm:flex-row">
 				{/* product images  */}

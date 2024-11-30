@@ -49,7 +49,7 @@ export default function CatProduct() {
 				viewport={{ once: true, amount: 0.9 }}
 				className="text-3xl text-center py-8"
 			>
-				<Title text1={"My"} text2={"Cats"} />
+				<Title text1={""} text2={"Cats"} />
 			</motion.div>
 
 			<div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

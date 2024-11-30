@@ -100,7 +100,7 @@ export default function PostFindPet() {
 	};
 
 	return (
-		<div className="flex flex-col sm:flex-row justify-center gap-4 pt-5 sm:pt-14 min-h-[80vh] border-t">
+		<div className="flex flex-col sm:flex-row justify-center gap-4 pt-5 px-2 sm:pt-14 min-h-[80vh] border-t">
 			<form
 				onSubmit={handleSubmit(onSubmitHandler)}
 				className="flex flex-col gap-4 w-full sm:max-w-[450px]"

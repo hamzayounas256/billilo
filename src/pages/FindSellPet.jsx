@@ -120,7 +120,7 @@ export default function FindSellPet() {
 	};
 
 	return (
-		<div className="container mx-auto flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t">
+		<div className="container mx-auto px-2 flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t">
 			{/* Filter Section */}
 			<div className="min-w-60">
 				<p
