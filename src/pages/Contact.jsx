@@ -3,8 +3,11 @@ import { assets } from "../assets/assets";
 
 import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
+import { useContext } from "react";
+import { AnimalContext } from "../context/AnimalContext";
 
 export default function Contact() {
+	const { navigate } = useContext(AnimalContext);
 	return (
 		<div className="container mx-auto">
 			<motion.div
@@ -35,19 +38,22 @@ export default function Contact() {
 				>
 					<p className="font-semibold text-xl text-orange-600">OUR STORE</p>
 					<p className="text-gray-500">
-						15-D Al-Makkah Colony <br /> Township, Lahore, Pakistan
+						Address---------- <br /> Location----------
 					</p>
 					<p className="text-gray-500">
-						Tel: +923 364 527 513 <br /> Email: hamzayounas256@gmail.com
+						Tel: Telephone <br /> Email: admin@email.com
 					</p>
 					<p className="font-semibold text-xl text-orange-600">
-						Careers at Billingo
+						Careers at Billilo
 					</p>
 					<p className="text-gray-500">
 						Learn more about our teams and job openings.
 					</p>
-					<button className="border border-orange-600 text-orange-600 px-8 py-4 text-sm hover:bg-orange-600 hover:text-white transition-all duration-500">
-						Explore Jobs
+					<button
+						onClick={() => navigate("/")}
+						className="border border-orange-600 text-orange-600 px-8 py-4 text-sm hover:bg-orange-600 hover:text-white transition-all duration-500"
+					>
+						Explore More
 					</button>
 				</motion.div>
 			</div>

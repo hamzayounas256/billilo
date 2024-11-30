@@ -12,7 +12,7 @@ export default function ProductFind() {
 	const [productData, setProductData] = useState(null); // Save matched product here
 	const uid = localStorage.getItem("id");
 
-	console.log(productId);
+	// console.log(productId);
 
 	// Fetch Dashboard Data
 	const fetchDashboardData = async () => {
@@ -40,7 +40,7 @@ export default function ProductFind() {
 		if (products.length > 0) {
 			products.map((item) => {
 				if (Number(item.id) === Number(productId)) {
-					console.log(item);
+					// console.log(item);
 					setProductData(item);
 					setImage(item.images[0]);
 					return null;

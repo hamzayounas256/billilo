@@ -1,35 +1,92 @@
+import { useContext, useState, useEffect } from "react";
+import { AnimalContext } from "../context/AnimalContext";
+import axios from "axios";
 import { assets } from "../assets/assets";
 import Title from "./Title";
+import { motion } from "framer-motion";
+import { fadeIn } from "../variants";
 
 export default function CatProduct() {
+	const { apiLink, navigate } = useContext(AnimalContext);
+	const [products, setProducts] = useState([]);
+	const [related, setRelated] = useState([]);
+	const uid = localStorage.getItem("id");
+
+	const fetchDashboardData = async () => {
+		try {
+			const response = await axios.get(`${apiLink}/dashboard/`, {
+				params: {
+					user_id: uid,
+					category: 10,
+				},
+			});
+
+			if (response.data.success) {
+				setProducts(response.data.data);
+			} else {
+				console.error("Error Fetching Products:", response.data.message);
+			}
+		} catch (err) {
+			console.error("API Error while fetching products:", err.message);
+		}
+	};
+
+	useEffect(() => {
+		fetchDashboardData();
+	}, []);
+
+	useEffect(() => {
+		const relatedProducts = products.slice(0, 5); // Limit to 6 products
+		setRelated(relatedProducts);
+	}, [products]);
+
 	return (
-		<div className="container mx-auto">
-			<div className="text-3xl text-center py-8">
+		<div className="container mx-auto py-2 px-4">
+			<motion.div
+				variants={fadeIn("down", 0.2)}
+				initial="hidden"
+				whileInView={"show"}
+				viewport={{ once: true, amount: 0.9 }}
+				className="text-3xl text-center py-8"
+			>
 				<Title text1={"My"} text2={"Cats"} />
-			</div>
-			<div className="flex flex-col sm:flex-row border border-grey-400">
-				{/* Hero Left Side */}
-				<div className="w-full sm:w-1/2 flex items-center justify-center py-10 sm:py-0">
-					<div className="text-[#414141]">
-						<div className="flex items-center gap-2">
-							<p className="w-8 md:w-11 h-[2px] bg-[#414141]"></p>
-							<p className="font-medium text-sm md:text-base">
-								{/* OUR BESTSELLERS */}
-							</p>
+			</motion.div>
+
+			<div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+				{/* Left Side*/}
+				<motion.div
+					variants={fadeIn("right", 0.2)}
+					initial="hidden"
+					whileInView={"show"}
+					viewport={{ once: true, amount: 0.9 }}
+					className="flex justify-center items-center"
+				>
+					<img
+						className="rounded-lg shadow-lg w-full max-w-md"
+						src={assets.cat_pic}
+						alt="Cats"
+					/>
+				</motion.div>
+
+				{/* Right Side */}
+				<div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+					{related.map((item) => (
+						<div
+							key={item.id}
+							onClick={() => navigate(`/productsell/${item.id}`)}
+							className="cursor-pointer border rounded-lg p-4 shadow-md"
+						>
+							<img
+								className="w-full h-40 object-cover rounded-md mb-2"
+								src={item.images[0]}
+								alt={item.name}
+							/>
+							<p className="text-gray-500 text-sm">{item.category}</p>
+							<h3 className="font-bold text-lg">{item.name}</h3>
+							{/* <p className="font-semibold text-orange-600">Rs {item.price}</p> */}
 						</div>
-						<h1 className="prata-regular text-3xl sm:py-3 lg:text-5xl leading-relaxed">
-							{/* LATEST ARRIVALS */}
-						</h1>
-						<div className="flex items-center gap-2">
-							<p className="font-semibold text-sm md:text-base">
-								{/* SHOP NOW */}
-							</p>
-							<p className="w-8 md:w-11 h-[1px] bg-[#414141]"></p>
-						</div>
-					</div>
+					))}
 				</div>
-				{/* Hero Right Side */}
-				<img className="w-full sm:w-1/2" src={assets.cat_pic} alt="" />
 			</div>
 		</div>
 	);

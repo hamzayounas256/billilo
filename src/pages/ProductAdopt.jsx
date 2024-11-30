@@ -37,7 +37,7 @@ export default function ProductAdopt() {
 		if (products.length > 0) {
 			products.map((item) => {
 				if (Number(item.id) === Number(productId)) {
-					console.log(item);
+					// console.log(item);
 					setProductData(item);
 					setImage(item.images[0]);
 					return null;

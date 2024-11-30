@@ -39,7 +39,7 @@ export default function FindFoundPet() {
 		const value = Number(e.target.value);
 		setPriceRange({ start: 0, end: value }); // Directly set the range
 		setSliderValue(value);
-		console.log("Updated Range:", { start: 0, end: value }); // Debug log
+		// console.log("Updated Range:", { start: 0, end: value }); // Debug log
 	};
 
 	// Handle date change
@@ -68,7 +68,7 @@ export default function FindFoundPet() {
 			});
 
 			if (response.data.success) {
-				console.log("Fetched Products:", response.data.data); // Debug log
+				// console.log("Fetched Products:", response.data.data); // Debug log
 				setProducts(response.data.data);
 			} else {
 				console.error("Error Fetching Products:", response.data.message);

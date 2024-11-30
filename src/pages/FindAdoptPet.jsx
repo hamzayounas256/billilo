@@ -27,9 +27,16 @@ export default function FindAdoptPet() {
 	// Calculate default start and end dates
 	useEffect(() => {
 		const today = new Date();
-		const firstDay = new Date(today.getFullYear(), today.getMonth(), 1); // 1st day of the month
-		const formattedStartDate = firstDay.toISOString().split("T")[0]; // Format as YYYY-MM-DD
-		const formattedEndDate = today.toISOString().split("T")[0]; // Current date in YYYY-MM-DD format
+		let month = today.getMonth() + 1; // Months are zero-based, add 1
+		let day = today.getDate();
+		const year = today.getFullYear();
+
+		// Pad month and day with leading zeros
+		const formattedStartDate = `${year}-${String(month).padStart(2, "0")}-01`;
+		const formattedEndDate = `${year}-${String(month).padStart(
+			2,
+			"0"
+		)}-${String(day).padStart(2, "0")}`;
 
 		setStartDate(formattedStartDate);
 		setEndDate(formattedEndDate);
@@ -56,11 +63,11 @@ export default function FindAdoptPet() {
 		try {
 			const response = await axios.get(apiLink + "/dashboard/", {
 				params: {
-					// category: selectedCategory,
+					category: selectedCategory,
 					user_id: uid,
-					// start_date: startDate,
-					// end_date: endDate,
-					// name: search,
+					start_date: startDate,
+					end_date: endDate,
+					name: search,
 					status: "Adopt",
 				},
 			});

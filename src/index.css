@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -28,9 +28,16 @@ a.active hr {
 	display: none;
 }
 
-.prata-regular {
+/* .prata-regular {
 	font-family: "Prata", serif;
 	font-weight: 400;
+	font-style: normal;
+} */
+
+.raleway-uniquifier {
+	font-family: "Raleway", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: <weight>;
 	font-style: normal;
 }
 

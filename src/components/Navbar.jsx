@@ -168,7 +168,7 @@ export default function Navbar() {
 						<p>PET CARE</p>
 						<hr className="w-2/4 border-none h-[1.5px] bg-orange-700 hidden" />
 						<div className="group-hover:block hidden absolute dropdown-menu right-0 pt-3">
-							<div className="flex flex-col gap-2 w-48 py-3 px-5 bg-slate-100 text-grey-500 rounded">
+							<div className="flex flex-col gap-2 w-52 py-3 px-5 bg-slate-100 text-grey-500 rounded">
 								<p
 									onClick={() => navigate("/findanimalshelter")}
 									className="cursor-pointer hover:text-black"

@@ -38,7 +38,7 @@ export default function ProductSell() {
 		if (products.length > 0) {
 			products.map((item) => {
 				if (Number(item.id) === Number(productId)) {
-					console.log(item);
+					// console.log(item);
 					setProductData(item);
 					setImage(item.images[0]);
 					return null;
@@ -58,7 +58,7 @@ export default function ProductSell() {
 	}, [products, productId]);
 
 	return productData ? (
-		<div className="border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-500">
+		<div className="mx-auto px-2 border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-500">
 			{/* product Data  */}
 			<div className="flex gap-12 sm:gap-12 flex-col sm:flex-row">
 				{/* product images  */}
