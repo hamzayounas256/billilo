@@ -15,7 +15,9 @@ export default function Navbar() {
 	const id = localStorage.getItem("id");
 	const userImg = localStorage.getItem("userImg");
 	const name = localStorage.getItem("user_name");
+	const type = localStorage.getItem("type");
 
+	// console.log(type);
 	useEffect(() => {
 		// Check if the user is logged in on component mount
 		if (accessToken !== null) {
@@ -49,6 +51,7 @@ export default function Navbar() {
 				localStorage.removeItem("id");
 				localStorage.removeItem("user_email");
 				localStorage.removeItem("userImg");
+				localStorage.removeItem("type");
 
 				// Update status and navigate to Login page
 				setCurrentStatus("Login");
@@ -182,9 +185,7 @@ export default function Navbar() {
 								>
 									FIND VETS NEARBY
 								</p>
-								{currentStatus === "Login" ? (
-									""
-								) : (
+								{type === "Admin" ? (
 									<>
 										<p
 											onClick={() => navigate("/postanimalshelter")}
@@ -199,6 +200,8 @@ export default function Navbar() {
 											POST VETS NEARBY
 										</p>
 									</>
+								) : (
+									""
 								)}
 							</div>
 						</div>
@@ -395,9 +398,7 @@ export default function Navbar() {
 					>
 						PET CARE {">"} FIND VETS NEARBY
 					</NavLink>
-					{currentStatus === "Login" ? (
-						""
-					) : (
+					{type === "Admin" ? (
 						<>
 							<NavLink
 								onClick={() => setVisible(false)}
@@ -414,6 +415,8 @@ export default function Navbar() {
 								PET CARE {">"} POST VETS NEARBY
 							</NavLink>
 						</>
+					) : (
+						""
 					)}
 					<NavLink
 						onClick={() => setVisible(false)}

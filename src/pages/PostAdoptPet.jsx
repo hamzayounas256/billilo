@@ -80,7 +80,7 @@ export default function PostAdoptPet() {
 			formData.append("location", data.location);
 			formData.append("whatsapp_no", data.whatsapp_no);
 			formData.append("description", data.description);
-			formData.append("price", data.price);
+			formData.append("price", 0);
 			formData.append("user_id", uid);
 
 			// API Call
@@ -131,22 +131,22 @@ export default function PostAdoptPet() {
 						</option>
 					))}
 				</select>
-				<div className="flex gap-3">
-					<input
-						className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
-						type="text"
-						placeholder="Breed"
-						autoComplete="off"
-						{...register("breed", { required: "Breed is required" })}
-					/>
-					<input
+				{/* <div className="flex gap-3"> */}
+				<input
+					className="w-full px-3 py-2 border border-gray-300"
+					type="text"
+					placeholder="Breed"
+					autoComplete="off"
+					{...register("breed", { required: "Breed is required" })}
+				/>
+				{/* <input
 						className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
 						type="text"
 						placeholder="Price"
 						autoComplete="off"
 						{...register("price", { required: "Price is Required" })}
-					/>
-				</div>
+					/> */}
+				{/* </div> */}
 				<div className="flex gap-3">
 					<input
 						className="border border-gray-300 rounded py-1.5 px-3.5 w-full"

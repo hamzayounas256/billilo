@@ -34,8 +34,15 @@ export default function Login() {
 			// console.log(response);
 			// Check if login is successful
 			if (response.data.success) {
-				const { access_token, refresh_token, first_name, email, id, image } =
-					response.data.data;
+				const {
+					access_token,
+					refresh_token,
+					first_name,
+					email,
+					id,
+					image,
+					type,
+				} = response.data.data;
 
 				reset();
 
@@ -47,6 +54,7 @@ export default function Login() {
 				localStorage.setItem("user_email", email);
 				localStorage.setItem("userImg", image);
 				localStorage.setItem("user", JSON.stringify(response.data.data));
+				localStorage.setItem("type", type);
 
 				// Navigate to dashboard on success
 				navigate("/");

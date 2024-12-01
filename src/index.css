@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+@import "https://unpkg.com/leaflet@1.7.1/dist/leaflet.css";
 
 @tailwind base;
 @tailwind components;
@@ -43,4 +44,41 @@ a.active hr {
 
 .slider {
 	background: #f97316; /* Orange color */
+}
+
+.modal-container {
+	background-color: #ffffff;
+	padding: 20px;
+	border-radius: 10px;
+}
+.modal-label {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+.modal-input {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+	margin-bottom: 20px;
+}
+.modal-buttons {
+	display: flex;
+	justify-content: flex-end;
+}
+.modal-button {
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.modal-button.cancel {
+	background-color: #ff5757;
+	color: #ffffff;
+	margin-right: 10px;
+}
+.modal-button.save {
+	background-color: #4caf50;
+	color: #ffffff;
 }
