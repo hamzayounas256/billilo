@@ -25,7 +25,7 @@ export default function ProductLost() {
 			});
 
 			if (response.data.success) {
-				// console.log(response);
+				// console.log(response.data.data);
 				setProducts(response.data.data); // Save API data in state
 			} else {
 				console.error(response.data.message || "Failed to fetch data");
@@ -40,9 +40,9 @@ export default function ProductLost() {
 		if (products.length > 0) {
 			products.map((item) => {
 				if (Number(item.id) === Number(productId)) {
-					//console.log(item);
 					setProductData(item);
 					setImage(item.images[0]);
+					// console.log("Product", item.user.image[0]);
 					return null;
 				}
 			});
@@ -113,7 +113,7 @@ export default function ProductLost() {
 					>
 						MORE INFO...
 					</button>
-					<div className="flex flex-row align-middle mt-5 text-md border px-3 py-3">
+					<div className="flex flex-row justify-between items-center align-middle mt-5 text-md border px-3 py-3">
 						<p>
 							<b>Owner:</b>
 							<br /> Name:
@@ -124,7 +124,11 @@ export default function ProductLost() {
 							<br /> Country: {productData.user.country}
 							<br /> Created At: {productData.created_at}
 						</p>
-						{/* <img src={productData.user.image[0]} alt="" /> */}
+						<img
+							className="w-24 h-24 rounded-full"
+							src={productData.user.image}
+							alt=""
+						/>
 					</div>
 					<hr className="mt-8 sm:w-4/5" />
 				</div>

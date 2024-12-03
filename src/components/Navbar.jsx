@@ -201,10 +201,14 @@ export default function Navbar() {
 			<div className="flex items-center gap-2 text-sm text-orange-700 cursor-pointer">
 				<div className="group relative">
 					{userImg ? (
-						<img className="w-10 rounded-full" src={userImg} alt="profile" />
+						<img
+							className="w-12 h-12 rounded-full"
+							src={userImg}
+							alt="profile"
+						/>
 					) : (
 						<img
-							className="w-6 rounded-full"
+							className="w-12 h-12 rounded-full"
 							src={assets.profile_icon}
 							alt="profile"
 						/>
@@ -316,34 +320,6 @@ export default function Navbar() {
 							>
 								FIND PET {">"} SELL PET
 							</NavLink>
-							{/* <NavLink
-								onClick={() => setVisible(false)}
-								className="py-2 pl-6 border"
-								to="/postlostpet"
-							>
-								POST PET {">"} LOST PET
-							</NavLink>
-							<NavLink
-								onClick={() => setVisible(false)}
-								className="py-2 pl-6 border"
-								to="/postfoundpet"
-							>
-								POST PET {">"} FOUND PET
-							</NavLink>
-							<NavLink
-								onClick={() => setVisible(false)}
-								className="py-2 pl-6 border"
-								to="/postadoptpet"
-							>
-								POST PET {">"} ADOPT PET
-							</NavLink>
-							<NavLink
-								onClick={() => setVisible(false)}
-								className="py-2 pl-6 border"
-								to="/postsellpet"
-							>
-								POST PET {">"} SELL PET
-							</NavLink> */}
 						</>
 					)}
 					<NavLink
@@ -351,35 +327,15 @@ export default function Navbar() {
 						className="py-2 pl-6 border"
 						to="/findanimalshelter"
 					>
-						PET CARE {">"} FIND ANIMAL SHELTER
+						PET CARE {">"} ANIMAL SHELTER
 					</NavLink>
 					<NavLink
 						onClick={() => setVisible(false)}
 						className="py-2 pl-6 border"
 						to="/findvetsnearby"
 					>
-						PET CARE {">"} FIND VETS NEARBY
+						PET CARE {">"} VETS NEARBY
 					</NavLink>
-					{type === "Admin" ? (
-						<>
-							<NavLink
-								onClick={() => setVisible(false)}
-								className="py-2 pl-6 border"
-								to="/postanimalshelter"
-							>
-								PET CARE {">"} POST ANIMAL SHELTER
-							</NavLink>
-							<NavLink
-								onClick={() => setVisible(false)}
-								className="py-2 pl-6 border"
-								to="/postvetsnearby"
-							>
-								PET CARE {">"} POST VETS NEARBY
-							</NavLink>
-						</>
-					) : (
-						""
-					)}
 					<NavLink
 						onClick={() => setVisible(false)}
 						className="py-2 pl-6 border"

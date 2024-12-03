@@ -237,9 +237,12 @@ export default function Signup() {
 				className={`w-full px-3 py-2 border ${
 					errors.profile_img ? "border-red-500" : "border-gray-800"
 				}`}
-				{...register("profile_img", {
-					required: "Profile image is required",
-				})}
+				{...register(
+					"profile_img"
+					// 	,{
+					// 	required: "Profile image is required",
+					// }
+				)}
 			/>
 
 			<div className="w-full flex justify-between text-sm mt-[-8px]">

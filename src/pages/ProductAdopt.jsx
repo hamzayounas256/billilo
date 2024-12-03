@@ -106,7 +106,7 @@ export default function ProductAdopt() {
 					>
 						MORE INFO...
 					</button>
-					<div className="flex flex-row align-middle mt-5 text-md border px-3 py-3">
+					<div className="flex flex-row justify-between items-center align-middle mt-5 text-md border px-3 py-3">
 						<p>
 							<b>Owner:</b>
 							<br /> Name:
@@ -117,7 +117,11 @@ export default function ProductAdopt() {
 							<br /> Country: {productData.user.country}
 							<br /> Created At: {productData.created_at}
 						</p>
-						<img src={productData.user.image[0]} alt="" />
+						<img
+							className="w-24 h-24 rounded-full"
+							src={productData.user.image}
+							alt=""
+						/>
 					</div>
 					<hr className="mt-8 sm:w-4/5" />
 				</div>

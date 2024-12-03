@@ -145,8 +145,8 @@ export default function PostAnimalShelter() {
 				<input
 					className="w-full px-3 py-2 border border-gray-300"
 					type="text"
-					placeholder="Name"
-					{...register("name", { required: "name is required" })}
+					placeholder="Clinic Name"
+					{...register("name", { required: "Clinic name is required" })}
 				/>
 
 				{/* <div className="flex gap-3">

@@ -70,7 +70,9 @@ export default function Login() {
 		} catch (error) {
 			// Handle API call failure
 			console.error("Login failed:", error.message);
-			toast.error("An error occurred during login. Please try again.");
+			toast.error(
+				error.message || "An error occurred during login. Please try again."
+			);
 		}
 	};
 
