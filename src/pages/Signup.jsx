@@ -34,7 +34,7 @@ export default function Signup() {
 					phone_no: data.phone_no,
 					password: data.password,
 					confirm_password: data.confirm_password,
-					profile_img: data.profile_img[0],
+					// profile_img: data.profile_img[0],
 				},
 				{
 					headers: {
@@ -228,7 +228,7 @@ export default function Signup() {
 			</motion.div>
 
 			{/* Profile Image */}
-			<motion.input
+			{/* <motion.input
 				variants={fadeIn("up", 0.2)}
 				initial="hidden"
 				whileInView={"show"}
@@ -243,7 +243,7 @@ export default function Signup() {
 					// 	required: "Profile image is required",
 					// }
 				)}
-			/>
+			/> */}
 
 			<div className="w-full flex justify-between text-sm mt-[-8px]">
 				{/* <p className="cursor-pointer">Forgot Your Password?</p> */}
