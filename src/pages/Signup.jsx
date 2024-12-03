@@ -45,11 +45,13 @@ export default function Signup() {
 			// console.log(response);
 			if (response.status === 200) {
 				reset();
-				toast.success("Registration successful! Please log in.");
+				toast.success(
+					response.data.message || "Registration successful! Please log in."
+				);
 				// console.log(response.data);
 				navigate("/login");
 			} else {
-				toast.error(response.message);
+				toast.error(response.data.message || "Registration Failed");
 			}
 		} catch (error) {
 			if (error.response && error.response.status === 400) {

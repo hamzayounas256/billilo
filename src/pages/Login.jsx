@@ -59,10 +59,13 @@ export default function Login() {
 				// Navigate to dashboard on success
 				navigate("/");
 
-				toast.success("Login successful!");
+				toast.success(response.data.message || "Login successful!");
 			} else {
 				// Handle login failure
-				toast.error("Login failed. Please check your credentials.");
+				toast.error(
+					response.data.message ||
+						"Login failed. Please check your credentials."
+				);
 			}
 		} catch (error) {
 			// Handle API call failure

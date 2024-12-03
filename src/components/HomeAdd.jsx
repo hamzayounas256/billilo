@@ -4,23 +4,19 @@ import { fadeIn } from "../variants";
 
 export default function HomeAdd() {
 	return (
-		<div className="relative px-2">
+		<div className="relative">
 			{/* Wavy SVG */}
-			<motion.svg
-				variants={fadeIn("up", 0.2)}
-				initial="hidden"
-				whileInView={"show"}
-				viewport={{ once: true, amount: 0.9 }}
+			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 1440 320"
-				className="absolute top-0 left-0 w-full h-full hidden lg:block"
+				className="absolute bottom-0 hidden lg:block"
 			>
 				<path
 					fill="#FDFBBD"
 					fillOpacity="1"
 					d="M0,128L40,138.7C80,149,160,171,240,165.3C320,160,400,128,480,122.7C560,117,640,139,720,138.7C800,139,880,117,960,117.3C1040,117,1120,139,1200,133.3C1280,128,1360,96,1400,80L1440,64L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"
 				></path>
-			</motion.svg>
+			</svg>
 
 			{/* Content */}
 			<div className="relative flex flex-col items-center justify-center py-16 px-6 lg:flex-row lg:justify-between lg:px-20">

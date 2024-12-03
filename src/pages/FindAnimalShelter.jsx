@@ -198,6 +198,17 @@ export default function FindAnimalShelter() {
 							key={shelter.id}
 							className="flex flex-col sm:flex-row border px-2 my-5 border-grey-400"
 						>
+							{/* + Button */}
+							{type === "Admin" && (
+								<div className="absolute top-28 right-5 sm:top-28 sm:right-10 -z-1">
+									<button
+										className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-500 text-white rounded-full flex justify-center items-center shadow-lg hover:bg-orange-700 transition"
+										onClick={() => navigate("/postanimalshelter")}
+									>
+										+
+									</button>
+								</div>
+							)}
 							{/* Left Section */}
 							<div className="w-full sm:w-1/2 flex items-center py-10 sm:py-0">
 								<div className="lg:ms-2 text-[#414141]">
@@ -230,17 +241,17 @@ export default function FindAnimalShelter() {
 										<b>Current Occupancy: </b> {shelter.current_occupancy}
 									</p>
 									{type === "Admin" ? (
-										<div className="flex gap-2">
+										<div className="flex my-2 gap-2">
 											{/* Delete Button */}
 											<button
-												className="bg-orange-400 px-4 py-2"
+												className="bg-orange-400 rounded-lg px-4 py-2"
 												onClick={() => handleDelete(shelter.id)}
 											>
 												Delete
 											</button>
 											{/* Edit Button */}
 											<button
-												className="bg-orange-400 px-4 py-2"
+												className="bg-orange-400 rounded-lg px-4 py-2"
 												onClick={() => {
 													setSelectedShelter({ ...shelter });
 													setShowEditModal(true);

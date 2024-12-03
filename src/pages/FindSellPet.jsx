@@ -6,7 +6,7 @@ import ProductItemSell from "../components/ProductItemSell";
 import { AnimalContext } from "../context/AnimalContext";
 
 export default function FindSellPet() {
-	const { apiLink } = useContext(AnimalContext);
+	const { apiLink, navigate } = useContext(AnimalContext);
 	const [products, setProducts] = useState([]);
 	const [categories, setCategories] = useState([]);
 	const [selectedCategory, setSelectedCategory] = useState("");
@@ -121,6 +121,15 @@ export default function FindSellPet() {
 
 	return (
 		<div className="container mx-auto px-2 flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t">
+			{/* + Button */}
+			<div className="absolute top-28 right-5 sm:top-28 sm:right-10 -z-1">
+				<button
+					className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-500 text-white rounded-full flex justify-center items-center shadow-lg hover:bg-orange-700 transition"
+					onClick={() => navigate("/postsellpet")}
+				>
+					+
+				</button>
+			</div>
 			{/* Filter Section */}
 			<div className="min-w-60">
 				<p

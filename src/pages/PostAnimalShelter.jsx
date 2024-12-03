@@ -7,7 +7,7 @@ import { LoadScript, GoogleMap, Marker } from "@react-google-maps/api";
 import { AnimalContext } from "../context/AnimalContext";
 
 export default function PostAnimalShelter() {
-	const { apiLink } = useContext(AnimalContext);
+	const { apiLink, navigate } = useContext(AnimalContext);
 	const uid = localStorage.getItem("id");
 	const personName = localStorage.getItem("user_name");
 
@@ -61,10 +61,16 @@ export default function PostAnimalShelter() {
 
 			if (response.ok) {
 				const result = await response.json();
-				toast.success("Pet information submitted successfully!");
+				toast.success(
+					response.data.message || "Pet information submitted successfully!"
+				);
+				navigate("/findanimalshelter");
 				reset();
 			} else {
-				toast.error("Failed to submit pet information. Please try again.");
+				toast.error(
+					response.data.message ||
+						"Failed to submit pet information. Please try again."
+				);
 			}
 		} catch (error) {
 			console.error("Error submitting the form:", error);
@@ -144,13 +150,15 @@ export default function PostAnimalShelter() {
 				<div className="flex gap-3">
 					<input
 						className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
-						type="number" min={0}
+						type="number"
+						min={0}
 						placeholder="Capacity"
 						{...register("capacity", { required: "Capacity is required" })}
 					/>
 					<input
 						className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
-						type="number" min={0}
+						type="number"
+						min={0}
 						placeholder="Current Occupancy"
 						{...register("current_occupancy", {
 							required: "Current Occupancy is Required",

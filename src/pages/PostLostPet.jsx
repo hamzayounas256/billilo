@@ -7,7 +7,7 @@ import { LoadScript, GoogleMap, Marker } from "@react-google-maps/api";
 import { AnimalContext } from "../context/AnimalContext";
 
 export default function PostLostPet() {
-	const { apiLink } = useContext(AnimalContext);
+	const { apiLink, navigate } = useContext(AnimalContext);
 	const uid = localStorage.getItem("id");
 	const personName = localStorage.getItem("user_name");
 
@@ -89,10 +89,16 @@ export default function PostLostPet() {
 
 			if (response.ok) {
 				const result = await response.json();
-				toast.success("Pet information submitted successfully!");
+				toast.success(
+					response.data.message || "Pet information submitted successfully!"
+				);
+				navigate("/findlostpet");
 				reset();
 			} else {
-				toast.error("Failed to submit pet information. Please try again.");
+				toast.error(
+					response.data.message ||
+						"Failed to submit pet information. Please try again."
+				);
 			}
 		} catch (error) {
 			console.error("Error submitting the form:", error);

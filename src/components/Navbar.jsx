@@ -126,7 +126,7 @@ export default function Navbar() {
 						<hr className="w-2/4 border-none h-[1.5px] bg-orange-700 hidden" />
 					</div>
 				)}
-				{currentStatus === "Login" ? (
+				{/* {currentStatus === "Login" ? (
 					""
 				) : (
 					<div className="flex flex-col gap-1 items-center">
@@ -165,7 +165,7 @@ export default function Navbar() {
 						</div>
 						<hr className="w-2/4 border-none h-[1.5px] bg-orange-700 hidden" />
 					</div>
-				)}
+				)} */}
 				<div className="flex flex-col gap-1 items-center">
 					<div className="group relative">
 						<p>PET CARE</p>
@@ -176,33 +176,15 @@ export default function Navbar() {
 									onClick={() => navigate("/findanimalshelter")}
 									className="cursor-pointer hover:text-black"
 								>
-									FIND ANIMAL SHELTER
+									ANIMAL SHELTER
 								</p>
 
 								<p
 									onClick={() => navigate("/findvetsnearby")}
 									className="cursor-pointer hover:text-black"
 								>
-									FIND VETS NEARBY
+									VETS NEARBY
 								</p>
-								{type === "Admin" ? (
-									<>
-										<p
-											onClick={() => navigate("/postanimalshelter")}
-											className="cursor-pointer hover:text-black"
-										>
-											POST ANIMAL SHELTER
-										</p>
-										<p
-											onClick={() => navigate("/postvetsnearby")}
-											className="cursor-pointer hover:text-black"
-										>
-											POST VETS NEARBY
-										</p>
-									</>
-								) : (
-									""
-								)}
 							</div>
 						</div>
 					</div>
@@ -214,28 +196,6 @@ export default function Navbar() {
 				</NavLink>
 			</ul>
 
-			{/* <div
-				onClick={() => navigate("/Login")}
-				className="flex items-center gap-2 text-sm text-orange-700 cursor-pointer"
-			>
-				{userImg ? (
-					<img className="w-5" src={userImg} alt="profile" />
-				) : (
-					<img className="w-5" src={assets.profile_icon} alt="profile" />
-				)}
-				{currentStatus === "Login" ? (
-					<p onClick={() => navigate("/Login")}>Login</p>
-				) : (
-					<p onClick={logoutHandler}>LOGOUT</p>
-				)}
-
-				<img
-					src={assets.menu_icon}
-					onClick={() => setVisible(true)}
-					className="w-5 cursor-pointer sm:hidden"
-					alt=""
-				/>
-			</div> */}
 			<div className="flex items-center gap-2 text-sm text-orange-700 cursor-pointer">
 				<div className="group relative">
 					{userImg ? (
@@ -248,7 +208,7 @@ export default function Navbar() {
 						/>
 					)}
 					<hr className="w-2/4 border-none h-[1.5px] bg-orange-700 hidden" />
-					<div className="group-hover:block hidden absolute dropdown-menu right-0 pt-3">
+					<div className="group-hover:block hidden absolute dropdown-menu right-0 pt-3 z-10">
 						<div className="flex flex-col gap-2 w-44 py-3 px-5 bg-slate-100 text-grey-500 rounded">
 							{currentStatus === "Login" ? (
 								""
@@ -294,7 +254,7 @@ export default function Navbar() {
 			</div>
 			{/* Sidebar menu for small screens */}
 			<div
-				className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${
+				className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all z-10 ${
 					visible ? "w-full" : "w-0"
 				}`}
 			>
@@ -354,7 +314,7 @@ export default function Navbar() {
 							>
 								FIND PET {">"} SELL PET
 							</NavLink>
-							<NavLink
+							{/* <NavLink
 								onClick={() => setVisible(false)}
 								className="py-2 pl-6 border"
 								to="/postlostpet"
@@ -381,7 +341,7 @@ export default function Navbar() {
 								to="/postsellpet"
 							>
 								POST PET {">"} SELL PET
-							</NavLink>
+							</NavLink> */}
 						</>
 					)}
 					<NavLink

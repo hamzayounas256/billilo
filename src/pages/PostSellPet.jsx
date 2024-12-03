@@ -6,7 +6,7 @@ import axios from "axios";
 import { AnimalContext } from "../context/AnimalContext";
 
 export default function PostSellPet() {
-	const { apiLink } = useContext(AnimalContext);
+	const { apiLink, navigate } = useContext(AnimalContext);
 	const uid = localStorage.getItem("id");
 	const personName = localStorage.getItem("user_name");
 	// console.log(uid);
@@ -91,10 +91,16 @@ export default function PostSellPet() {
 
 			if (response.ok) {
 				const result = await response.json();
-				toast.success("Pet information submitted successfully!");
-				reset(); // Reset the form
+				toast.success(
+					response.data.message || "Pet information submitted successfully!"
+				);
+				navigate("/findsellpet");
+				reset();
 			} else {
-				toast.error("Failed to submit pet information. Please try again.");
+				toast.error(
+					response.data.message ||
+						"Failed to submit pet information. Please try again."
+				);
 			}
 		} catch (error) {
 			console.error("Error submitting the form:", error);
