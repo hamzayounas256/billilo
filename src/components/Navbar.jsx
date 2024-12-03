@@ -166,30 +166,32 @@ export default function Navbar() {
 						<hr className="w-2/4 border-none h-[1.5px] bg-orange-700 hidden" />
 					</div>
 				)} */}
-				<div className="flex flex-col gap-1 items-center">
-					<div className="group relative">
-						<p>PET CARE</p>
-						<hr className="w-2/4 border-none h-[1.5px] bg-orange-700 hidden" />
-						<div className="group-hover:block hidden absolute dropdown-menu right-0 pt-3">
-							<div className="flex flex-col gap-2 w-52 py-3 px-5 bg-slate-100 text-grey-500 rounded">
-								<p
-									onClick={() => navigate("/findanimalshelter")}
-									className="cursor-pointer hover:text-black"
-								>
-									ANIMAL SHELTER
-								</p>
+				{currentStatus !== "Login" && (
+					<div className="flex flex-col gap-1 items-center">
+						<div className="group relative">
+							<p>PET CARE</p>
+							<hr className="w-2/4 border-none h-[1.5px] bg-orange-700 hidden" />
+							<div className="group-hover:block hidden absolute dropdown-menu right-0 pt-3">
+								<div className="flex flex-col gap-2 w-52 py-3 px-5 bg-slate-100 text-grey-500 rounded">
+									<p
+										onClick={() => navigate("/findanimalshelter")}
+										className="cursor-pointer hover:text-black"
+									>
+										ANIMAL SHELTER
+									</p>
 
-								<p
-									onClick={() => navigate("/findvetsnearby")}
-									className="cursor-pointer hover:text-black"
-								>
-									VETS NEARBY
-								</p>
+									<p
+										onClick={() => navigate("/findvetsnearby")}
+										className="cursor-pointer hover:text-black"
+									>
+										VETS NEARBY
+									</p>
+								</div>
 							</div>
 						</div>
+						<hr className="w-2/4 border-none h-[1.5px] bg-orange-700 hidden" />
 					</div>
-					<hr className="w-2/4 border-none h-[1.5px] bg-orange-700 hidden" />
-				</div>
+				)}
 				<NavLink to="/contact" className="flex flex-col gap-1 items-center">
 					<p>CONTACT</p>
 					<hr className="w-2/4 border-none h-[1.5px] bg-orange-700 hidden" />
