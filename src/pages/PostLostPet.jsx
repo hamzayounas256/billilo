@@ -12,7 +12,6 @@ export default function PostLostPet() {
 	const personName = localStorage.getItem("user_name");
 
 	const [categories, setCategories] = useState([]);
-	
 
 	// Fetch categories from API
 	const fetchCategories = async () => {
@@ -88,14 +87,15 @@ export default function PostLostPet() {
 			if (response.ok) {
 				const result = await response.json();
 				toast.success(
-					response.data.message || "Pet information submitted successfully!"
+					// response.data.message ||
+					"Pet information submitted successfully!"
 				);
 				navigate("/findlostpet");
 				reset();
 			} else {
 				toast.error(
-					response.data.message ||
-						"Failed to submit pet information. Please try again."
+					// response.data.message ||
+					"Failed to submit pet information. Please try again."
 				);
 			}
 		} catch (error) {

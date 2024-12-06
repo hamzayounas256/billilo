@@ -15,7 +15,7 @@ export default function FindSellPet() {
 
 	const [priceRange, setPriceRange] = useState({
 		start: 0,
-		end: 50000,
+		end: 500000,
 	});
 	const [sliderValue, setSliderValue] = useState(25000); // Midpoint of range
 
@@ -169,7 +169,7 @@ export default function FindSellPet() {
 							className="w-3/4 mx-auto slider"
 							type="range"
 							min="0"
-							max="50000"
+							max="500000"
 							value={sliderValue}
 							onChange={handleRangeChange}
 						/>

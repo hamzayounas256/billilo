@@ -53,7 +53,6 @@ export default function PostAdoptPet() {
 				"address",
 				"location",
 				"whatsapp_no",
-				"price",
 				"images",
 				"description",
 			];
@@ -94,14 +93,15 @@ export default function PostAdoptPet() {
 			if (response.ok) {
 				const result = await response.json();
 				toast.success(
-					response.data.message || "Pet information submitted successfully!"
+					// response.data.message ||
+					"Pet information submitted successfully!"
 				);
 				navigate("/findadoptpet");
 				reset();
 			} else {
 				toast.error(
-					response.data.message ||
-						"Failed to submit pet information. Please try again."
+					// response.data.message ||
+					"Failed to submit pet information. Please try again."
 				);
 			}
 		} catch (error) {

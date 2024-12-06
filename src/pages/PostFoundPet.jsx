@@ -91,14 +91,15 @@ export default function PostFindPet() {
 			if (response.ok) {
 				const result = await response.json();
 				toast.success(
-					response.data.message || "Pet information submitted successfully!"
+					// response.data.message ||
+					"Pet information submitted successfully!"
 				);
 				navigate("/findfoundpet");
 				reset(); // Reset the form
 			} else {
 				toast.error(
-					response.data.message ||
-						"Failed to submit pet information. Please try again."
+					// response.data.message ||
+					"Failed to submit pet information. Please try again."
 				);
 			}
 		} catch (error) {

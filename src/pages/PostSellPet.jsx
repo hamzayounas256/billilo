@@ -94,14 +94,15 @@ export default function PostSellPet() {
 			if (response.ok) {
 				const result = await response.json();
 				toast.success(
-					response.data.message || "Pet information submitted successfully!"
+					// response.data.message ||
+					"Pet information submitted successfully!"
 				);
 				navigate("/findsellpet");
 				reset();
 			} else {
 				toast.error(
-					response.data.message ||
-						"Failed to submit pet information. Please try again."
+					// response.data.message ||
+					"Failed to submit pet information. Please try again."
 				);
 			}
 		} catch (error) {
