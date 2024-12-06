@@ -12,9 +12,7 @@ export default function PostLostPet() {
 	const personName = localStorage.getItem("user_name");
 
 	const [categories, setCategories] = useState([]);
-	const [showMap, setShowMap] = useState(false);
-	const [selectedLocation, setSelectedLocation] = useState(null);
-	const [isLocationSelected, setIsLocationSelected] = useState(false);
+	
 
 	// Fetch categories from API
 	const fetchCategories = async () => {
@@ -105,6 +103,10 @@ export default function PostLostPet() {
 			toast.error("An error occurred. Please try again.");
 		}
 	};
+
+	const [showMap, setShowMap] = useState(false);
+	const [selectedLocation, setSelectedLocation] = useState(null);
+	const [isLocationSelected, setIsLocationSelected] = useState(false);
 
 	// Function to get user's geolocation
 	const getUserLocation = () => {

@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { AnimalContext } from "../context/AnimalContext";
+import { LoadScript, GoogleMap, Marker } from "@react-google-maps/api";
 
 export default function PostAdoptPet() {
 	const { apiLink, navigate } = useContext(AnimalContext);
@@ -37,6 +38,7 @@ export default function PostAdoptPet() {
 		handleSubmit,
 		formState: { errors },
 		reset,
+		setValue,
 	} = useForm();
 
 	const onSubmitHandler = async (data) => {
@@ -91,16 +93,77 @@ export default function PostAdoptPet() {
 
 			if (response.ok) {
 				const result = await response.json();
-				toast.success(response.data.message || "Pet information submitted successfully!");
+				toast.success(
+					response.data.message || "Pet information submitted successfully!"
+				);
 				navigate("/findadoptpet");
 				reset();
 			} else {
-				toast.error(response.data.message ||"Failed to submit pet information. Please try again.");
+				toast.error(
+					response.data.message ||
+						"Failed to submit pet information. Please try again."
+				);
 			}
 		} catch (error) {
 			console.error("Error submitting the form:", error);
 			toast.error("An error occurred. Please try again.");
 		}
+	};
+
+	const [showMap, setShowMap] = useState(false);
+	const [selectedLocation, setSelectedLocation] = useState(null);
+	const [isLocationSelected, setIsLocationSelected] = useState(false);
+
+	// Function to get user's geolocation
+	const getUserLocation = () => {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(
+				(position) => {
+					const { latitude, longitude } = position.coords;
+					setSelectedLocation({ lat: latitude, lng: longitude });
+				},
+				(error) => {
+					console.error("Error getting location:", error);
+					toast.error("Unable to retrieve your location.");
+				}
+			);
+		} else {
+			console.error("Geolocation is not supported by this browser.");
+			toast.error("Geolocation is not supported by this browser.");
+		}
+	};
+
+	// Combined handler for location input focus
+	const handleLocationFocus = () => {
+		if (!isLocationSelected) {
+			getUserLocation();
+		}
+		setShowMap(true);
+	};
+
+	// Handle map click to select location
+	const handleMapClick = (event) => {
+		const location = {
+			lat: event.latLng.lat(),
+			lng: event.latLng.lng(),
+		};
+		setSelectedLocation(location);
+		setValue("location", `${location.lat}, ${location.lng}`);
+		setIsLocationSelected(true); // Add this line
+		setShowMap(false);
+		// console.log("Location selected:", location); // Debug log
+	};
+
+	// Map center based on selectedLocation or default Pakistan coordinates
+	const center = selectedLocation || {
+		lat: 33.7169, // Islamabad latitude
+		lng: 73.0812, // Islamabad longitude
+	};
+
+	// Map container style
+	const mapContainerStyle = {
+		width: "100%",
+		height: "400px",
 	};
 
 	return (
@@ -183,9 +246,25 @@ export default function PostAdoptPet() {
 					className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
 					type="text"
 					placeholder="Nearest Place"
-					autoComplete="off"
+					readOnly
+					onFocus={handleLocationFocus}
 					{...register("location", { required: "Location is Required" })}
 				/>
+				{showMap && (
+					<div>
+						<LoadScript googleMapsApiKey="AIzaSyCvIBpb1jSKbolAv1oaLE90ctMiL8pTqIg">
+							<GoogleMap
+								mapContainerStyle={mapContainerStyle}
+								center={center}
+								zoom={13}
+								onClick={handleMapClick}
+								key={JSON.stringify(center)} // Add this line
+							>
+								{selectedLocation && <Marker position={selectedLocation} />}
+							</GoogleMap>
+						</LoadScript>
+					</div>
+				)}
 				<input
 					className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
 					type="text"
