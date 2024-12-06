@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { assets } from "../assets/assets";
 export default function ProductItemLost({
 	id,
 	name,
@@ -17,9 +18,11 @@ export default function ProductItemLost({
 					alt=""
 				/>
 			</div>
+
 			<p className="pt-3 pb-1 text-sm text-orange-500">{name}</p>
 			<p className="text-sm font-medium">{breed}</p>
 			<p className="text-sm font-medium">{location}</p>
+
 			{/* </div> */}
 		</Link>
 	);

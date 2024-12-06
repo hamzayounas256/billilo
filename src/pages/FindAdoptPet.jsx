@@ -263,7 +263,7 @@ export default function FindAdoptPet() {
 				<div className="flex justify-center text-base sm:text-2xl mb-4">
 					<Title text1={"ADOPT"} text2={"PET"} />
 				</div>
-				<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 gap-y-6">
+				<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6">
 					{products.map((item) => (
 						<ProductItemAdopt
 							key={item.id}

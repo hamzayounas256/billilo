@@ -133,7 +133,7 @@ export default function Login() {
 						className={`w-full px-3 py-2 border ${
 							errors.password ? "border-red-500" : "border-gray-800"
 						}`}
-						placeholder="New Password"
+						placeholder="Password"
 						{...register("password", {})}
 					/>
 					<span
@@ -145,7 +145,8 @@ export default function Login() {
 				</motion.div>
 
 				<div className="w-full flex justify-between text-sm mt-[-8px]">
-					<p className="cursor-pointer">Forgot Your Password?</p>
+					{/* <p className="cursor-pointer">Forgot Your Password?</p> */}
+					<p></p>
 
 					<p className="cursor-pointer" onClick={() => navigate("/signup")}>
 						Are You a New Member?

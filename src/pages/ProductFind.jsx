@@ -2,6 +2,8 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AnimalContext } from "../context/AnimalContext";
+import { assets } from "../assets/assets";
+import { toast } from "react-toastify";
 // import { assets } from "../assets/assets";
 
 export default function ProductFind() {
@@ -11,6 +13,7 @@ export default function ProductFind() {
 	const [image, setImage] = useState([]);
 	const [productData, setProductData] = useState(null); // Save matched product here
 	const uid = localStorage.getItem("id");
+	const type = localStorage.getItem("type");
 
 	// console.log(productId);
 
@@ -53,6 +56,41 @@ export default function ProductFind() {
 	useEffect(() => {
 		fetchDashboardData();
 	}, []);
+
+	const deleteHandler = async (pid) => {
+		try {
+			const isConfirmed = window.confirm(
+				"Are you sure you want to delete this post?"
+			);
+			if (!isConfirmed) return;
+
+			const response = await axios.post(
+				apiLink + "/delete-find-lost/",
+				new URLSearchParams({
+					user_id: Number(uid),
+					pet_id: Number(pid),
+				}),
+				{ headers: { "Content-Type": "application/x-www-form-urlencoded" } }
+			);
+
+			if (response.data.success) {
+				// Update products state by removing the deleted product
+				setProducts((prevProducts) =>
+					prevProducts.filter((product) => Number(product.id) !== Number(pid))
+				);
+
+				toast.success("Deleted Successfully");
+
+				// Navigate back to the list page
+				navigate("/findfoundpet");
+			} else {
+				toast.error("Deletion failed");
+			}
+		} catch (error) {
+			console.error("Error deleting post:", error);
+			toast.error("An error occurred during deletion");
+		}
+	};
 
 	// Fetch Product Data When `products` or `productId` Change
 	useEffect(() => {
@@ -107,12 +145,23 @@ export default function ProductFind() {
 						Description: {productData.description}
 					</p> */}
 
-					<button
-						onClick={() => navigate("/hero")}
-						className="bg-black text-white px-8 py-3 text-sm active:bg-gray-700"
-					>
-						MORE INFO...
-					</button>
+					<div className="flex flex-row gap-5 items-center">
+						<button
+							onClick={() => navigate("/hero")}
+							className="bg-black text-white px-8 py-3 text-sm active:bg-gray-700"
+						>
+							MORE INFO...
+						</button>
+
+						{type === "Admin" && (
+							<img
+								className="w-5 h-5 cursor-pointer"
+								onClick={() => deleteHandler(productData.id)}
+								src={assets.bin_icon}
+								alt="delete"
+							/>
+						)}
+					</div>
 					<div className="flex flex-row justify-between items-center align-middle mt-5 text-md border px-3 py-3">
 						<p>
 							<b>Owner:</b>

@@ -41,7 +41,7 @@ export default function Contact() {
 						Address---------- <br /> Location----------
 					</p>
 					<p className="text-gray-500">
-						Tel: Telephone <br /> Email: admin@email.com
+						Tel: Telephone <br /> Email: info@billilo.com
 					</p>
 					<p className="font-semibold text-xl text-orange-600">
 						Careers at Billilo

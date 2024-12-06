@@ -62,23 +62,18 @@ export default function FindSellPet() {
 	// Fetch dashboard data
 	const fetchDashboardData = async () => {
 		try {
-			// console.log("Fetching with Range:", priceRange, startDate, endDate); // Debug log
-			const response = await axios.get(
-				// apiLink + "/dashboard/"
-				"https://petapp1503.pythonanywhere.com/petapp/dashboard/",
-				{
-					params: {
-						category: selectedCategory,
-						user_id: uid,
-						start_price: priceRange.start,
-						end_price: priceRange.end,
-						start_date: startDate,
-						end_date: endDate,
-						name: search,
-						status: "Sale",
-					},
-				}
-			);
+			const response = await axios.get(apiLink + "/dashboard/", {
+				params: {
+					category: selectedCategory,
+					user_id: uid,
+					start_price: priceRange.start,
+					end_price: priceRange.end,
+					start_date: startDate,
+					end_date: endDate,
+					name: search,
+					status: "Sale",
+				},
+			});
 
 			if (response.data.success) {
 				// console.log("Fetched Products:", response.data.data); // Debug log

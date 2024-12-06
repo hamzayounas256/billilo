@@ -10,6 +10,8 @@ const AnimalContextProvider = (props) => {
 	const apiLink = "https://petapp1503.pythonanywhere.com/petapp";
 	const value = { navigate, currency, apiLink };
 
+	
+
 	return (
 		<AnimalContext.Provider value={value}>
 			{props.children}
