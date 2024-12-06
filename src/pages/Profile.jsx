@@ -8,7 +8,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AnimalContext } from "../context/AnimalContext";
 
 export default function Profile() {
-	const { apiLink } = useContext(AnimalContext);
+	const { apiLink, navigate } = useContext(AnimalContext);
 	const user = JSON.parse(localStorage.getItem("user")) || {};
 	const {
 		id: userId,
@@ -18,6 +18,7 @@ export default function Profile() {
 		country,
 		phone_no,
 		image,
+		password: upassword,
 	} = user;
 
 	const [loading, setLoading] = useState(false);
@@ -57,13 +58,6 @@ export default function Profile() {
 	}, [reset, first_name, last_name, email, country, phone_no]);
 
 	const onSubmitHandler = async (data) => {
-		// Check for validation errors
-		if (Object.keys(errors).length > 0) {
-			toast.error("Please fill all required fields correctly!");
-			return;
-		}
-
-		// Ensure user_id is available
 		if (!userId) {
 			toast.error("User ID is missing.");
 			return;
@@ -77,49 +71,40 @@ export default function Profile() {
 			formData.append("email", data.email);
 			formData.append("country", data.country);
 			formData.append("phone_no", data.phone_no);
-			if (data.profile_img && data.profile_img[0]) {
+			formData.append("user_id", userId);
+			formData.append("password", data.password);
+			formData.append("confirm_password", data.confirm_password);
+			if (data.profile_img?.[0]) {
 				formData.append("profile_img", data.profile_img[0]);
 			}
-			if (data.password) {
-				formData.append("password", data.password);
-			}
-			formData.append("user_id", userId); // Ensure the backend expects 'user_id'
 
 			const response = await axios.post(apiLink + "/update-user/", formData);
 
 			if (response.status === 200) {
 				toast.success("Profile updated successfully!");
-				localStorage.setItem(
-					"user",
-					JSON.stringify({
-						...user,
-						...data,
-						image: response.data.profile_img,
-					})
-				);
+				const updatedUser = {
+					...user,
+					first_name: data.first_name,
+					last_name: data.last_name,
+					email: data.email,
+					country: data.country,
+					phone_no: data.phone_no,
+				};
+
+				if (data.profile_img && data.profile_img[0]) {
+					updatedUser.image = response.data.profile_img || user.image;
+				}
+
+				localStorage.setItem("user", JSON.stringify(updatedUser));
 				reset({
-					...data,
-					password: "",
 					confirm_password: "",
 				});
+				navigate("/");
 			} else {
 				toast.error(response.data.message || "Update failed");
 			}
 		} catch (error) {
-			if (error.response) {
-				// The request was made and the server responded with a status code
-				// that falls out of the range of 2xx
-				console.error(error.response.data);
-				toast.error(error.response.data.message || "An error occurred.");
-			} else if (error.request) {
-				// The request was made but no response was received
-				console.error(error.request);
-				toast.error("No response from the server.");
-			} else {
-				// Something happened in setting up the request that triggered an Error
-				console.error(error.message);
-				toast.error("An error occurred.");
-			}
+			toast.error(error.response?.data?.message || "An error occurred.");
 		} finally {
 			setLoading(false);
 		}
@@ -142,14 +127,7 @@ export default function Profile() {
 				/>
 			)}
 
-			{/* First Name and Last Name */}
-			<motion.div
-				variants={fadeIn("up", 0.2)}
-				initial="hidden"
-				whileInView={"show"}
-				viewport={{ once: true, amount: 0.9 }}
-				className="w-full flex justify-between gap-2"
-			>
+			<div className="w-full flex gap-2">
 				<input
 					type="text"
 					className={`w-1/2 px-3 py-2 border ${
@@ -166,36 +144,18 @@ export default function Profile() {
 					placeholder="Last Name"
 					{...register("last_name", { required: "Last Name is required" })}
 				/>
-			</motion.div>
+			</div>
 
-			{/* Email */}
-			<motion.input
-				variants={fadeIn("up", 0.2)}
-				initial="hidden"
-				whileInView={"show"}
-				viewport={{ once: true, amount: 0.9 }}
+			<input
 				type="email"
 				className={`w-full px-3 py-2 border ${
 					errors.email ? "border-red-500" : "border-gray-800"
 				}`}
 				placeholder="Email Address"
-				{...register("email", {
-					required: "Email is required",
-					pattern: {
-						value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-						message: "Invalid email address",
-					},
-				})}
+				{...register("email", { required: "Email is required" })}
 			/>
 
-			{/* Phone no and Country */}
-			<motion.div
-				variants={fadeIn("up", 0.2)}
-				initial="hidden"
-				whileInView={"show"}
-				viewport={{ once: true, amount: 0.9 }}
-				className="w-full flex justify-between gap-2"
-			>
+			<div className="w-full flex gap-2">
 				<input
 					type="text"
 					className={`w-1/2 px-3 py-2 border ${
@@ -212,16 +172,9 @@ export default function Profile() {
 					placeholder="Country"
 					{...register("country", { required: "Country is required" })}
 				/>
-			</motion.div>
+			</div>
 
-			{/* Password */}
-			<motion.div
-				variants={fadeIn("up", 0.2)}
-				initial="hidden"
-				whileInView={"show"}
-				viewport={{ once: true, amount: 0.9 }}
-				className="w-full relative"
-			>
+			<div className="w-full relative">
 				<input
 					type={showPassword ? "text" : "password"}
 					className={`w-full px-3 py-2 border ${
@@ -229,9 +182,10 @@ export default function Profile() {
 					}`}
 					placeholder="New Password"
 					{...register("password", {
+						required: "Password is required",
 						minLength: {
 							value: 8,
-							message: "Password must be at least 8 characters",
+							message: "Password must be at least 8 characters long",
 						},
 					})}
 				/>
@@ -241,16 +195,9 @@ export default function Profile() {
 				>
 					{showPassword ? <FaEyeSlash /> : <FaEye />}
 				</span>
-			</motion.div>
+			</div>
 
-			{/* Confirm Password */}
-			<motion.div
-				variants={fadeIn("up", 0.2)}
-				initial="hidden"
-				whileInView={"show"}
-				viewport={{ once: true, amount: 0.9 }}
-				className="w-full relative"
-			>
+			<div className="w-full relative">
 				<input
 					type={showConfirmPassword ? "text" : "password"}
 					className={`w-full px-3 py-2 border ${
@@ -258,6 +205,7 @@ export default function Profile() {
 					}`}
 					placeholder="Confirm Password"
 					{...register("confirm_password", {
+						required: "Confirm Password is required",
 						validate: (value) => value === password || "Passwords do not match",
 					})}
 				/>
@@ -267,36 +215,23 @@ export default function Profile() {
 				>
 					{showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
 				</span>
-			</motion.div>
+			</div>
 
-			{/* Profile Image */}
-			<motion.div
-				variants={fadeIn("up", 0.2)}
-				initial="hidden"
-				whileInView={"show"}
-				viewport={{ once: true, amount: 0.9 }}
-				className="w-full"
-			>
+			<div className="w-full">
 				<input
 					type="file"
-					accept="image/*"
 					className="w-full px-3 py-2 border border-gray-800"
 					{...register("profile_img")}
 				/>
-			</motion.div>
+			</div>
 
-			{/* Submit Button */}
-			<motion.button
-				variants={fadeIn("up", 0.2)}
-				initial="hidden"
-				whileInView={"show"}
-				viewport={{ once: true, amount: 0.9 }}
+			<button
 				type="submit"
 				className="w-full px-4 py-2 bg-orange-500 text-white hover:bg-orange-600"
 				disabled={loading}
 			>
 				{loading ? "Updating..." : "Update Profile"}
-			</motion.button>
+			</button>
 		</form>
 	);
 }
