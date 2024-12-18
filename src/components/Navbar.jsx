@@ -44,14 +44,15 @@ export default function Navbar() {
 				// console.log("Logout successful");
 
 				// Remove user data from localStorage
-				localStorage.removeItem("user");
-				localStorage.removeItem("access_token");
-				localStorage.removeItem("refresh_token");
-				localStorage.removeItem("user_name");
-				localStorage.removeItem("id");
-				localStorage.removeItem("user_email");
-				localStorage.removeItem("userImg");
-				localStorage.removeItem("type");
+				// localStorage.removeItem("user");
+				// localStorage.removeItem("access_token");
+				// localStorage.removeItem("refresh_token");
+				// localStorage.removeItem("user_name");
+				// localStorage.removeItem("id");
+				// localStorage.removeItem("user_email");
+				// localStorage.removeItem("userImg");
+				// localStorage.removeItem("type");
+				localStorage.clear();
 
 				// Update status and navigate to Login page
 				setCurrentStatus("Login");

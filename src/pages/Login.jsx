@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
 export default function Login() {
 	const { navigate, apiLink } = useContext(AnimalContext);
@@ -100,7 +102,6 @@ export default function Login() {
 					<p className="prata-regular text-3xl">Login</p>
 					<hr className="border-none h-[1.5px] w-8 bg-gray-800" />
 				</motion.div>
-
 				{/* Email Input */}
 				<motion.input
 					variants={fadeIn("up", 0.2)}
@@ -120,7 +121,6 @@ export default function Login() {
 						},
 					})}
 				/>
-
 				<motion.div
 					variants={fadeIn("up", 0.2)}
 					initial="hidden"
@@ -143,7 +143,6 @@ export default function Login() {
 						{showPassword ? <FaEyeSlash /> : <FaEye />}
 					</span>
 				</motion.div>
-
 				<div className="w-full flex justify-between text-sm mt-[-8px]">
 					{/* <p className="cursor-pointer">Forgot Your Password?</p> */}
 					<p></p>
@@ -152,7 +151,6 @@ export default function Login() {
 						Are You a New Member?
 					</p>
 				</div>
-
 				<motion.button
 					variants={fadeIn("up", 0.2)}
 					initial="hidden"
@@ -163,6 +161,16 @@ export default function Login() {
 				>
 					Login
 				</motion.button>
+				<GoogleLogin
+					onSuccess={(credentialResponse) => {
+						const decoded = jwtDecode(credentialResponse);
+						console.log(decoded);
+					}}
+					onError={() => {
+						console.log("Login Failed");
+					}}
+				/>
+				;
 			</form>
 		</>
 	);
