@@ -163,7 +163,7 @@ export default function Login() {
 				</motion.button>
 				<GoogleLogin
 					onSuccess={(credentialResponse) => {
-						const decoded = jwtDecode(credentialResponse);
+						const decoded = jwtDecode(credentialResponse?.credential);
 						console.log(decoded);
 					}}
 					onError={() => {
