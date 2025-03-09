@@ -30,6 +30,8 @@ import ProductSell from "./pages/ProductSell";
 import ProductAdopt from "./pages/ProductAdopt";
 import Hero from "./components/Hero";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
+import Notifications from "./pages/Notifications";
+import Advertisment from "./pages/Advertisment";
 
 function App() {
 	return (
@@ -53,6 +55,8 @@ function App() {
 
 					<Route path="/profile" element={<Profile />} />
 					<Route path="/ownpets" element={<OwnPets />} />
+					<Route path="/notifications" element={<Notifications />} />
+					<Route path="/advertisment" element={<Advertisment />} />
 
 					<Route path="/findadoptpet" element={<FindAdoptPet />} />
 					<Route path="/findanimalshelter" element={<FindAnimalShelter />} />

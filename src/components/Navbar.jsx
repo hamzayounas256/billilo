@@ -16,8 +16,8 @@ export default function Navbar() {
 	const userImg = localStorage.getItem("userImg");
 	const name = localStorage.getItem("user_name");
 	const type = localStorage.getItem("type");
-
 	// console.log(type);
+
 	useEffect(() => {
 		// Check if the user is logged in on component mount
 		if (accessToken !== null) {
@@ -233,6 +233,24 @@ export default function Navbar() {
 									>
 										OWN PETS
 									</p>
+									{type === "User" ? (
+										""
+									) : (
+										<>
+											<p
+												onClick={() => navigate("/notifications")}
+												className="cursor-pointer hover:text-black"
+											>
+												NOTIFICATION
+											</p>
+											<p
+												onClick={() => navigate("/advertisment")}
+												className="cursor-pointer hover:text-black"
+											>
+												ADVERTISEMENT
+											</p>
+										</>
+									)}
 								</>
 							)}
 
