@@ -59,22 +59,23 @@ export default function PostAnimalShelter() {
 				body: formData,
 			});
 
+			const result = await response.json(); // Properly parse JSON before accessing properties
+
 			if (response.ok) {
-				const result = await response.json();
 				toast.success(
-					response.data.message || "Pet information submitted successfully!"
+					result.message || "Pet information submitted successfully!"
 				);
-				navigate("/findanimalshelter");
 				reset();
+				navigate("/findanimalshelter");
 			} else {
 				toast.error(
-					response.data.message ||
+					result.message ||
 						"Failed to submit pet information. Please try again."
 				);
 			}
 		} catch (error) {
 			console.error("Error submitting the form:", error);
-			toast.error("An error occurred. Please try again.");
+			toast.error("An unexpected error occurred. Please try again later.");
 		}
 	};
 

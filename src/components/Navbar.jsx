@@ -233,7 +233,7 @@ export default function Navbar() {
 									>
 										OWN PETS
 									</p>
-									{type === "User" ? (
+									{type === "user" ? (
 										""
 									) : (
 										<>
@@ -244,7 +244,7 @@ export default function Navbar() {
 												NOTIFICATION
 											</p>
 											<p
-												onClick={() => navigate("/advertisment")}
+												onClick={() => navigate("/findadvertisment")}
 												className="cursor-pointer hover:text-black"
 											>
 												ADVERTISEMENT

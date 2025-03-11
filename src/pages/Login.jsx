@@ -90,14 +90,14 @@ export default function Login() {
 		<>
 			<form
 				onSubmit={handleSubmit(onSubmitHandler)}
-				className="flex flex-col items-center w-[90%] sm:max-w-96 m-auto my-14 gap-4 text-orange-500"
+				className="flex flex-col items-center w-[90%] sm:max-w-96 m-auto mb-10 gap-4 text-orange-500"
 			>
 				<motion.div
 					variants={fadeIn("down", 0.2)}
 					initial="hidden"
 					whileInView={"show"}
 					viewport={{ once: true, amount: 0.9 }}
-					className="inline-flex items-center gap-2 mb-2 mt-10"
+					className="inline-flex items-center gap-2 mb-2 mt-4"
 				>
 					<p className="prata-regular text-3xl">Login</p>
 					<hr className="border-none h-[1.5px] w-8 bg-gray-800" />

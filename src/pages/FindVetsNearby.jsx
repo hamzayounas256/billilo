@@ -180,6 +180,18 @@ export default function FindVetsNearby() {
 				<Title text1={"VETS"} text2={"NEARBY"} />
 			</div>
 
+			{/* "+" Button moved outside of the shelter mapping */}
+			{type === "admin" && (
+				<div className="absolute top-28 right-5 sm:top-28 sm:right-10 z-10">
+					<button
+						className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-500 text-white rounded-full flex justify-center items-center hover:bg-orange-700 transition"
+						onClick={() => navigate("/postvetsnearby")}
+					>
+						+
+					</button>
+				</div>
+			)}
+
 			{shelters.length > 0 ? (
 				shelters.map((shelter) => {
 					let latitude = 0;
@@ -197,17 +209,6 @@ export default function FindVetsNearby() {
 							key={shelter.id}
 							className="flex flex-col sm:flex-row border px-2 my-5 border-grey-400"
 						>
-							{/* + Button */}
-							{type === "Admin" && (
-								<div className="absolute top-28 right-5 sm:top-28 sm:right-10 -z-1">
-									<button
-										className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-500 text-white rounded-full flex justify-center items-center hover:bg-orange-700 transition"
-										onClick={() => navigate("/postvetsnearby")}
-									>
-										+
-									</button>
-								</div>
-							)}
 							{/* Left Section */}
 							<div className="w-full sm:w-1/2 flex items-center py-10 sm:py-0">
 								<div className="lg:ms-2 text-[#414141]">
@@ -237,7 +238,7 @@ export default function FindVetsNearby() {
 										<b>Capacity: </b> {shelter.country}
 									</p>
 
-									{type === "Admin" && (
+									{type === "admin" && (
 										<div className="flex my-2 gap-2">
 											{/* Delete Button */}
 											<button
@@ -285,7 +286,17 @@ export default function FindVetsNearby() {
 					);
 				})
 			) : (
-				<p className="text-center py-10">Loading shelters...</p>
+				<div className="text-center py-10">
+					<p className="text-lg mb-4">No vet clinics found</p>
+					{type === "admin" && (
+						<button
+							className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition"
+							onClick={() => navigate("/postvetsnearby")}
+						>
+							Add New Vet Clinic
+						</button>
+					)}
+				</div>
 			)}
 
 			{/* Edit Modal */}
@@ -334,22 +345,6 @@ export default function FindVetsNearby() {
 									className="w-full lg:w-3/4 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-gray-600"
 								/>
 							</div>
-							{/* <div className="flex flex-col lg:flex-row items-center mb-2">
-									<label
-										htmlFor="current_occupancy"
-										className="w-full lg:w-1/4 block text-gray-700"
-									>
-										Current Occupancy:
-									</label>
-									<input
-										type="number"
-										id="current_occupancy"
-										{...register("current_occupancy", {
-											required: "Current Occupancy is Required",
-										})}
-										className="w-full lg:w-3/4 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-gray-600"
-									/>
-								</div> */}
 							<div className="flex flex-col lg:flex-row items-center mb-2">
 								<label
 									htmlFor="address"

@@ -18,6 +18,8 @@ import { useForm } from "react-hook-form";
 
 export default function FindAnimalShelter() {
 	const [shelters, setShelters] = useState([]);
+	const [loading, setLoading] = useState(true); // Add loading state
+	const [error, setError] = useState(null); // Add error state
 	const { apiLink, navigate } = useContext(AnimalContext);
 	const uid = localStorage.getItem("id");
 	const type = localStorage.getItem("type");
@@ -45,21 +47,31 @@ export default function FindAnimalShelter() {
 
 	useEffect(() => {
 		// Fetch shelters data from API
+		setLoading(true);
+		setError(null);
+
 		axios
 			.get(apiLink + "/get-animal-shellter/", { params: { user_id: uid } })
 			.then((response) => {
+				setLoading(false);
 				if (response.data.success) {
 					setShelters(response.data.data);
+				} else {
+					setError("Failed to fetch shelters");
 				}
 			})
-			.catch((error) => console.error("Error fetching data:", error));
-	}, []);
+			.catch((error) => {
+				setLoading(false);
+				setError("Error fetching data: " + error.message);
+				console.error("Error fetching data:", error);
+			});
+	}, []); // Add empty dependency array to prevent infinite fetching
 
 	// Function to handle shelter deletion
 	const handleDelete = async (shelterId) => {
 		try {
 			const isConfirmed = window.confirm(
-				"Are you sure you want to delete this shelter?"
+				"Are you sure! you want to delete this shelter?"
 			);
 			if (!isConfirmed) return;
 
@@ -175,13 +187,65 @@ export default function FindAnimalShelter() {
 		}
 	}, [selectedShelter, reset]);
 
+	// Render the "+" button for adding new shelters
+	const renderAddButton = () => {
+		if (type === "admin") {
+			return (
+				<div className="absolute top-28 right-5 sm:top-28 sm:right-10 -z-1">
+					<button
+						className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-500 text-white rounded-full flex justify-center items-center shadow-lg hover:bg-orange-700 transition"
+						onClick={() => navigate("/postanimalshelter")}
+					>
+						<span className="text-2xl">+</span>
+					</button>
+				</div>
+			);
+		}
+		return null;
+	};
+
 	return (
 		<div className="container mx-auto">
 			<div className="text-center text-2xl pt-10 border-t">
 				<Title text1={"ANIMAL"} text2={"SHELTER"} />
 			</div>
 
-			{shelters.length > 0 ? (
+			{/* Always render the "+" button, independent of shelter data */}
+			{renderAddButton()}
+
+			{/* Loading state */}
+			{loading && (
+				<div className="text-center py-10">
+					<p>Loading shelters...</p>
+				</div>
+			)}
+
+			{/* Error state */}
+			{error && (
+				<div className="text-center py-10 text-red-500">
+					<p>{error}</p>
+				</div>
+			)}
+
+			{/* No shelters found state */}
+			{!loading && !error && shelters.length === 0 && (
+				<div className="text-center py-10">
+					<p className="text-gray-600 mb-4">No shelters found</p>
+					{type === "admin" && (
+						<button
+							className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded"
+							onClick={() => navigate("/postanimalshelter")}
+						>
+							Add New Shelter
+						</button>
+					)}
+				</div>
+			)}
+
+			{/* Shelters list */}
+			{!loading &&
+				!error &&
+				shelters.length > 0 &&
 				shelters.map((shelter) => {
 					let latitude = 0;
 					let longitude = 0;
@@ -198,17 +262,6 @@ export default function FindAnimalShelter() {
 							key={shelter.id}
 							className="flex flex-col sm:flex-row border px-2 my-5 border-grey-400"
 						>
-							{/* + Button */}
-							{type === "Admin" && (
-								<div className="absolute top-28 right-5 sm:top-28 sm:right-10 -z-1">
-									<button
-										className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-500 text-white rounded-full flex justify-center items-center shadow-lg hover:bg-orange-700 transition"
-										onClick={() => navigate("/postanimalshelter")}
-									>
-										+
-									</button>
-								</div>
-							)}
 							{/* Left Section */}
 							<div className="w-full sm:w-1/2 flex items-center py-10 sm:py-0">
 								<div className="lg:ms-2 text-[#414141]">
@@ -240,7 +293,7 @@ export default function FindAnimalShelter() {
 									<p className="text-sm md:text-base">
 										<b>Current Occupancy: </b> {shelter.current_occupancy}
 									</p>
-									{type === "Admin" ? (
+									{type === "admin" ? (
 										<div className="flex my-2 gap-2">
 											{/* Delete Button */}
 											<button
@@ -248,7 +301,7 @@ export default function FindAnimalShelter() {
 												onClick={() => handleDelete(shelter.id)}
 											>
 												Delete
-											</button>
+											</button> 
 											{/* Edit Button */}
 											<button
 												className="bg-orange-400 rounded-lg px-4 py-2"
@@ -288,10 +341,7 @@ export default function FindAnimalShelter() {
 							</div>
 						</div>
 					);
-				})
-			) : (
-				<p className="text-center py-10">Loading shelters...</p>
-			)}
+				})}
 
 			{/* Edit Modal */}
 			{showEditModal && selectedShelter && (
@@ -307,7 +357,7 @@ export default function FindAnimalShelter() {
 							Edit Shelter
 						</h2>
 						<form onSubmit={handleSubmit(handleUpdate)}>
-							<div className="flex flex-col lg:flex-row items-center items-center mb-2">
+							<div className="flex flex-col lg:flex-row items-center mb-2">
 								<label
 									htmlFor="house_name"
 									className="w-full lg:w-1/4 block text-gray-700"

@@ -31,7 +31,9 @@ import ProductAdopt from "./pages/ProductAdopt";
 import Hero from "./components/Hero";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 import Notifications from "./pages/Notifications";
-import Advertisment from "./pages/Advertisment";
+import PostAdvertisment from "./pages/PostAdvertisment";
+import FindAdvertisement from "./pages/FindAdvertisement";
+// import Otp from "./pages/Otp";
 
 function App() {
 	return (
@@ -44,6 +46,7 @@ function App() {
 				<Route path="/hero" element={<Hero />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
+				{/* <Route path="/otp" element={<Otp />} /> */}
 				<Route path="/contact" element={<Contact />} />
 				<Route path="/about" element={<About />} />
 
@@ -56,7 +59,8 @@ function App() {
 					<Route path="/profile" element={<Profile />} />
 					<Route path="/ownpets" element={<OwnPets />} />
 					<Route path="/notifications" element={<Notifications />} />
-					<Route path="/advertisment" element={<Advertisment />} />
+					<Route path="/postadvertisment" element={<PostAdvertisment />} />
+					<Route path="/findadvertisment" element={<FindAdvertisement />} />
 
 					<Route path="/findadoptpet" element={<FindAdoptPet />} />
 					<Route path="/findanimalshelter" element={<FindAnimalShelter />} />
