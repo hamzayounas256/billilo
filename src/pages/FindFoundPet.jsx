@@ -58,7 +58,7 @@ export default function FindFoundPet() {
 			const response = await axios.get(apiLink + "/find-lost-dashboard/", {
 				params: {
 					user_id: uid,
-					status: "find",
+					status: "Found",
 					category: selectedCategory,
 					// start_price: priceRange.start,
 					// end_price: priceRange.end,

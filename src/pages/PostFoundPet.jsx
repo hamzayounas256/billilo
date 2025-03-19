@@ -73,7 +73,7 @@ export default function PostFindPet() {
 			formData.append("color", data.color);
 			formData.append("identity_mark", data.identity_mark);
 			formData.append("sex", data.sex);
-			formData.append("status", "Find");
+			formData.append("status", "Found");
 			formData.append("categ_id", data.categ_id);
 			formData.append("person_name", personName);
 			formData.append("address", data.address);
