@@ -126,16 +126,19 @@ export default function ProductSell() {
 						Age: {productData.age} Years
 					</p>
 					<p className="mt-5 text-md font-medium">
+						Location: {productData.location}
+					</p>
+					<p className="mt-5 text-md font-medium">
 						Address: {productData.address}
 					</p>
-					<p className="mt-5 text-3xl font-medium">
+					<p className="my-5 text-3xl font-medium">
 						{currency}
 						{": "}
 						{productData.price.toLocaleString()}
 					</p>
-					<p className="my-5 text-gray-500 md:w-4/5">
+					{/* <p className="my-5 text-gray-500 md:w-4/5">
 						Description: {productData.description}
-					</p>
+					</p> */}
 
 					<div className="flex flex-row gap-5 items-center">
 						<button
@@ -161,9 +164,7 @@ export default function ProductSell() {
 							{productData.user.first_name + productData.user.last_name}
 							<br /> Email: {productData.user.email}
 							<br /> Phone: {productData.user.phone_no}
-							<br /> Location: {productData.location}
 							<br /> Country: {productData.user.country}
-							<br /> Created At: {productData.created_at}
 						</p>
 						<img
 							className="w-24 h-24 rounded-full"

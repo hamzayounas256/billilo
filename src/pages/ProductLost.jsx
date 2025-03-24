@@ -128,7 +128,10 @@ export default function ProductLost() {
 					<p className="mt-5 text-md font-medium">
 						Age: {productData.age} Years
 					</p>
-					<p className="mt-5 text-md font-medium">
+					<p className="my-5 text-md font-medium">
+						Location: {productData.location}
+					</p>
+					<p className="my-5 text-md font-medium">
 						Address: {productData.address}
 					</p>
 					<div className="flex flex-row gap-5 items-center">
@@ -152,13 +155,11 @@ export default function ProductLost() {
 					<div className="flex flex-row justify-between items-center align-middle mt-5 text-md border px-3 py-3">
 						<p>
 							<b>Owner:</b>
-							<br /> Name:
+							<br /> Name:{" "}
 							{productData.user.first_name + productData.user.last_name}
 							<br /> Email: {productData.user.email}
 							<br /> Phone: {productData.user.phone_no}
-							<br /> Location: {productData.location}
 							<br /> Country: {productData.user.country}
-							<br /> Created At: {productData.created_at}
 						</p>
 						<img
 							className="w-24 h-24 rounded-full"

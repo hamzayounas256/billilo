@@ -125,7 +125,10 @@ export default function ProductAdopt() {
 					<p className="mt-5 text-md font-medium">
 						Age: {productData.age} Years
 					</p>
-					<p className="mt-5 text-md font-medium">
+					<p className="my-5 text-md font-medium">
+						Location: {productData.location}
+					</p>
+					<p className="my-5 text-md font-medium">
 						Address: {productData.address}
 					</p>
 					{/* <p className="mt-5 text-3xl font-medium">
@@ -161,9 +164,7 @@ export default function ProductAdopt() {
 							{productData.user.first_name + productData.user.last_name}
 							<br /> Email: {productData.user.email}
 							<br /> Phone: {productData.user.phone_no}
-							<br /> Location: {productData.location}
 							<br /> Country: {productData.user.country}
-							<br /> Created At: {productData.created_at}
 						</p>
 						<img
 							className="w-24 h-24 rounded-full"

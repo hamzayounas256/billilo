@@ -273,6 +273,7 @@ export default function FindAdoptPet() {
 							category={item.category}
 							breed={item.breed}
 							location={item.location}
+							address={item.address}
 						/>
 					))}
 				</div>

@@ -31,13 +31,7 @@ export default function PostLostPet() {
 		fetchCategories();
 	}, []);
 
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-		reset,
-		setValue,
-	} = useForm();
+	const { register, handleSubmit, reset, setValue } = useForm();
 
 	// Function to handle form submission
 	const onSubmitHandler = async (data) => {
@@ -85,7 +79,7 @@ export default function PostLostPet() {
 			});
 
 			if (response.ok) {
-				const result = await response.json();
+				await response.json();
 				toast.success(
 					// response.data.message ||
 					"Pet information submitted successfully!"
@@ -211,12 +205,23 @@ export default function PostLostPet() {
 						placeholder="Age (in years)"
 						{...register("age", { required: "Age is required" })}
 					/>
-					<input
+					<select
+						id="sex"
+						className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
+						{...register("sex", { required: "Sex is required" })}
+					>
+						<option value="" selected>
+							Choose a Sex
+						</option>
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+					</select>
+					{/* <input
 						className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
 						type="text"
 						placeholder="Sex"
 						{...register("sex", { required: "Sex is required" })}
-					/>
+					/> */}
 				</div>
 				<input
 					className="border border-gray-300 rounded py-1.5 px-3.5 w-full"

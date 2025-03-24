@@ -1,55 +1,55 @@
 import { useContext, useEffect, useState } from "react";
 import Title from "../components/Title";
 import axios from "axios";
-import { assets } from "../assets/assets";
+// import { assets } from "../assets/assets";
 import ProductItemFind from "../components/ProductItemFind";
 import { AnimalContext } from "../context/AnimalContext";
 
 export default function FindFoundPet() {
 	const { apiLink, navigate } = useContext(AnimalContext);
 	const [products, setProducts] = useState([]);
-	const [categories, setCategories] = useState([]);
-	const [selectedCategory, setSelectedCategory] = useState("");
-	const [showFilter, setShowFilter] = useState(false);
+	// const [categories, setCategories] = useState([]);
+	// const [selectedCategory, setSelectedCategory] = useState("");
+	// const [showFilter, setShowFilter] = useState(false);
 
-	const [priceRange, setPriceRange] = useState({
-		start: 0,
-		end: 50000,
-	});
-	const [sliderValue, setSliderValue] = useState(25000); // Midpoint of range
+	// const [priceRange, setPriceRange] = useState({
+	// 	start: 0,
+	// 	end: 50000,
+	// });
+	// const [sliderValue, setSliderValue] = useState(25000); // Midpoint of range
 
-	const [startDate, setStartDate] = useState(""); // Start Date for Filter
-	const [endDate, setEndDate] = useState(""); // End Date for Filter
+	// const [startDate, setStartDate] = useState(""); // Start Date for Filter
+	// const [endDate, setEndDate] = useState(""); // End Date for Filter
 
 	const uid = localStorage.getItem("id");
 
 	// Calculate default start and end dates
-	useEffect(() => {
-		const today = new Date();
-		const firstDay = new Date(today.getFullYear(), today.getMonth(), 1); // 1st day of the month
-		const formattedStartDate = firstDay.toISOString().split("T")[0]; // Format as YYYY-MM-DD
-		const formattedEndDate = today.toISOString().split("T")[0]; // Current date in YYYY-MM-DD format
+	// useEffect(() => {
+	// 	const today = new Date();
+	// 	const firstDay = new Date(today.getFullYear(), today.getMonth(), 1); // 1st day of the month
+	// 	const formattedStartDate = firstDay.toISOString().split("T")[0]; // Format as YYYY-MM-DD
+	// 	const formattedEndDate = today.toISOString().split("T")[0]; // Current date in YYYY-MM-DD format
 
-		setStartDate(formattedStartDate);
-		setEndDate(formattedEndDate);
-	}, []);
+	// 	setStartDate(formattedStartDate);
+	// 	setEndDate(formattedEndDate);
+	// }, []);
 
 	// Handle slider range change
-	const handleRangeChange = (e) => {
-		const value = Number(e.target.value);
-		setPriceRange({ start: 0, end: value }); // Directly set the range
-		setSliderValue(value);
-		// console.log("Updated Range:", { start: 0, end: value }); // Debug log
-	};
+	// const handleRangeChange = (e) => {
+	// 	const value = Number(e.target.value);
+	// 	setPriceRange({ start: 0, end: value }); // Directly set the range
+	// 	setSliderValue(value);
+	// 	// console.log("Updated Range:", { start: 0, end: value }); // Debug log
+	// };
 
 	// Handle date change
-	const handleStartDateChange = (e) => {
-		setStartDate(e.target.value);
-	};
+	// const handleStartDateChange = (e) => {
+	// 	setStartDate(e.target.value);
+	// };
 
-	const handleEndDateChange = (e) => {
-		setEndDate(e.target.value);
-	};
+	// const handleEndDateChange = (e) => {
+	// 	setEndDate(e.target.value);
+	// };
 
 	// Fetch dashboard data
 	const fetchDashboardData = async () => {
@@ -59,7 +59,7 @@ export default function FindFoundPet() {
 				params: {
 					user_id: uid,
 					status: "Found",
-					category: selectedCategory,
+					// category: selectedCategory,
 					// start_price: priceRange.start,
 					// end_price: priceRange.end,
 					// start_date: startDate,
@@ -80,31 +80,31 @@ export default function FindFoundPet() {
 
 	useEffect(() => {
 		fetchDashboardData(); // Trigger fetch on filter changes
-	}, [selectedCategory]);
-
-	// Fetch categories
-	const fetchCategories = async () => {
-		try {
-			const response = await axios.get(apiLink + "/get-category/");
-
-			if (response.status === 200) {
-				setCategories(response.data.data);
-			} else {
-				console.error(response.data.message || "Failed to fetch categories");
-			}
-		} catch (err) {
-			console.error("API Error:", err.message);
-		}
-	};
-
-	useEffect(() => {
-		fetchCategories();
 	}, []);
 
+	// Fetch categories
+	// const fetchCategories = async () => {
+	// 	try {
+	// 		const response = await axios.get(apiLink + "/get-category/");
+
+	// 		if (response.status === 200) {
+	// 			setCategories(response.data.data);
+	// 		} else {
+	// 			console.error(response.data.message || "Failed to fetch categories");
+	// 		}
+	// 	} catch (err) {
+	// 		console.error("API Error:", err.message);
+	// 	}
+	// };
+
+	// useEffect(() => {
+	// 	fetchCategories();
+	// }, []);
+
 	// Handle category selection
-	const handleCategoryChange = (e) => {
-		setSelectedCategory(e.target.value);
-	};
+	// const handleCategoryChange = (e) => {
+	// 	setSelectedCategory(e.target.value);
+	// };
 
 	return (
 		<div className="container mx-auto px-2 flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t">
@@ -118,7 +118,7 @@ export default function FindFoundPet() {
 				</button>
 			</div>
 			{/* Filter Section */}
-			<div className="min-w-60">
+			{/* <div className="min-w-60">
 				<p
 					onClick={() => setShowFilter(!showFilter)}
 					className="my-2 text-xl flex items-center cursor-pointer gap-2"
@@ -131,7 +131,6 @@ export default function FindFoundPet() {
 					/>
 				</p>
 
-				{/* Category Filter */}
 				<div
 					className={`border border-gray-300 pl-5 py-3 mt-6 ${
 						showFilter ? "" : "hidden"
@@ -163,7 +162,7 @@ export default function FindFoundPet() {
 						))}
 					</div>
 				</div>
-			</div>
+			</div> */}
 
 			{/* Products Section */}
 			<div className="flex-1 md:mx-2">
@@ -180,6 +179,7 @@ export default function FindFoundPet() {
 							category={item.category}
 							breed={item.breed}
 							location={item.location}
+							address={item.address}
 						/>
 					))}
 				</div>

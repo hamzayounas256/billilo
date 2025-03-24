@@ -17,7 +17,7 @@ export default function CatProduct() {
 			const response = await axios.get(`${apiLink}/dashboard/`, {
 				params: {
 					user_id: uid,
-					category: 10,
+					category: 11,
 				},
 			});
 
@@ -81,7 +81,7 @@ export default function CatProduct() {
 								src={item.images[0]}
 								alt={item.name}
 							/>
-							<p className="text-gray-500 text-sm">{item.category}</p>
+							<p className="text-gray-500 text-sm">{item.breed}</p>
 							<h3 className="font-bold text-lg">{item.name}</h3>
 							{/* <p className="font-semibold text-orange-600">Rs {item.price}</p> */}
 						</div>

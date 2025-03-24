@@ -6,6 +6,7 @@ export default function ProductItemSell({
 	category,
 	breed,
 	location,
+	address,
 }) {
 	return (
 		<Link className="text-gray-700 cursor-pointer" to={`/productsell/${id}`}>
@@ -19,7 +20,7 @@ export default function ProductItemSell({
 			</div>
 			<p className="pt-3 pb-1 text-sm text-orange-500">{name}</p>
 			<p className="text-sm font-medium">{breed}</p>
-			<p className="text-sm font-medium">{location}</p>
+			<p className="text-sm font-medium">{address}</p>
 			{/* </div> */}
 		</Link>
 	);

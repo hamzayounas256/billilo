@@ -9,7 +9,7 @@ import { LoadScript, GoogleMap, Marker } from "@react-google-maps/api";
 export default function PostSellPet() {
 	const { apiLink, navigate } = useContext(AnimalContext);
 	const uid = localStorage.getItem("id");
-	const personName = localStorage.getItem("user_name");
+	// const personName = localStorage.getItem("user_name");
 	// console.log(uid);
 
 	const [categories, setCategories] = useState([]);
@@ -36,7 +36,7 @@ export default function PostSellPet() {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors },
+		// formState: { errors },
 		reset,
 		setValue,
 	} = useForm();
@@ -92,7 +92,7 @@ export default function PostSellPet() {
 			});
 
 			if (response.ok) {
-				const result = await response.json();
+				await response.json();
 				toast.success(
 					// response.data.message ||
 					"Pet information submitted successfully!"
@@ -222,13 +222,17 @@ export default function PostSellPet() {
 						autoComplete="off"
 						{...register("age", { required: "Age is required" })}
 					/>
-					<input
+					<select
+						id="sex"
 						className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
-						type="text"
-						placeholder="Sex"
-						autoComplete="off"
 						{...register("sex", { required: "Sex is required" })}
-					/>
+					>
+						<option value="" selected>
+							Choose a Sex
+						</option>
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+					</select>
 				</div>
 				{/* <input
 					className="border border-gray-300 rounded py-1.5 px-3.5 w-full"

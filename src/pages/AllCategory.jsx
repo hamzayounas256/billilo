@@ -51,7 +51,7 @@ export default function AllCategory() {
 								<img
 									src={item.image}
 									alt={item.name}
-									className="w-32 h-32 object-cover rounded-full mb-3 border"
+									className="w-32 h-32 object-cover mb-3"
 								/>
 								<h3 className="text-lg font-semibold text-gray-700">
 									{item.name}
