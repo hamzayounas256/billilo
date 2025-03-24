@@ -93,7 +93,7 @@ export default function Navbar() {
 				) : (
 					<div className="flex flex-col gap-1 items-center">
 						<div className="group relative">
-							<p>FIND PET</p>
+							<p>PETS</p>
 							<hr className="w-2/4 border-none h-[1.5px] bg-orange-700 hidden" />
 							<div className="group-hover:block hidden absolute dropdown-menu right-0 pt-3">
 								<div className="flex flex-col gap-2 w-44 py-3 px-5 bg-slate-100 text-grey-500 rounded">
@@ -231,7 +231,7 @@ export default function Navbar() {
 										onClick={() => navigate("/ownpets")}
 										className="cursor-pointer hover:text-black"
 									>
-										OWN PETS
+										MY PETS
 									</p>
 									{type === "user" ? (
 										""
@@ -248,6 +248,12 @@ export default function Navbar() {
 												className="cursor-pointer hover:text-black"
 											>
 												ADVERTISEMENT
+											</p>
+											<p
+												onClick={() => navigate("/allcategory")}
+												className="cursor-pointer hover:text-black"
+											>
+												CATEGORY
 											</p>
 										</>
 									)}

@@ -139,7 +139,7 @@ export default function ProductLost() {
 							MORE INFO...
 						</button>
 
-						{type === "Admin" && (
+						{type === "admin" && (
 							<img
 								className="w-5 h-5 cursor-pointer"
 								onClick={() => deleteHandler(productData.id)}

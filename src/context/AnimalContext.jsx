@@ -1,12 +1,13 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const AnimalContext = createContext();
 
 const AnimalContextProvider = ({ children }) => {
 	const navigate = useNavigate();
+
 	const currency = "Rs";
-	// const apiLink = "https://petapp1503.pythonanywhere.com/petapp";
+
 	const apiLink = "https://petapp.billilo.com/petapp";
 
 	const value = { navigate, currency, apiLink };

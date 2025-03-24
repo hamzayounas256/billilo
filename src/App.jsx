@@ -33,6 +33,8 @@ import ProtectedRoutes from "./utils/ProtectedRoutes";
 import Notifications from "./pages/Notifications";
 import PostAdvertisment from "./pages/PostAdvertisment";
 import FindAdvertisement from "./pages/FindAdvertisement";
+import AllCategory from "./pages/AllCategory";
+import PostCategory from "./pages/PostCategory";
 // import Otp from "./pages/Otp";
 
 function App() {
@@ -61,6 +63,9 @@ function App() {
 					<Route path="/notifications" element={<Notifications />} />
 					<Route path="/postadvertisment" element={<PostAdvertisment />} />
 					<Route path="/findadvertisment" element={<FindAdvertisement />} />
+
+					<Route path="/allcategory" element={<AllCategory />} />
+					<Route path="/postcategory" element={<PostCategory />} />
 
 					<Route path="/findadoptpet" element={<FindAdoptPet />} />
 					<Route path="/findanimalshelter" element={<FindAnimalShelter />} />
