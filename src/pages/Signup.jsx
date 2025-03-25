@@ -29,7 +29,7 @@ export default function Signup() {
 		formData.append("phone_no", data.phone_no);
 		formData.append("password", data.password);
 		formData.append("confirm_password", data.confirm_password);
-		formData.append("profile_img", data.profile_img[0]);
+		// formData.append("profile_img", data.profile_img[0]);
 		// console.log(data);
 		try {
 			// API request
