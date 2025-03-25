@@ -6,8 +6,8 @@ import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { GoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
+// import { GoogleLogin } from "@react-oauth/google";
+// import { jwtDecode } from "jwt-decode";
 
 export default function Login() {
 	const { navigate, apiLink } = useContext(AnimalContext);
@@ -161,7 +161,7 @@ export default function Login() {
 				>
 					Login
 				</motion.button>
-				<GoogleLogin
+				{/* <GoogleLogin
 					onSuccess={(credentialResponse) => {
 						const decoded = jwtDecode(credentialResponse?.credential);
 						console.log(decoded);
@@ -169,7 +169,7 @@ export default function Login() {
 					onError={() => {
 						console.log("Login Failed");
 					}}
-				/>
+				/> */}
 				;
 			</form>
 		</>
