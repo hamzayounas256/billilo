@@ -22,7 +22,7 @@ export default function OtpVerification() {
 
 	// Start timer when component mounts or OTP is resent
 	const startTimer = () => {
-		setTimer(1);
+		setTimer(60);
 		setCanResend(false);
 
 		if (timerIntervalRef.current) {
