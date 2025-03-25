@@ -35,6 +35,7 @@ import PostAdvertisment from "./pages/PostAdvertisment";
 import FindAdvertisement from "./pages/FindAdvertisement";
 import AllCategory from "./pages/AllCategory";
 import PostCategory from "./pages/PostCategory";
+import Otp from "./pages/Otp";
 // import Otp from "./pages/Otp";
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
 				{/* <Route path="/otp" element={<Otp />} /> */}
 				<Route path="/contact" element={<Contact />} />
 				<Route path="/about" element={<About />} />
+				<Route path="/otp" element={<Otp />} />
 
 				<Route element={<ProtectedRoutes />}>
 					<Route path="/productsell/:productId" element={<ProductSell />} />

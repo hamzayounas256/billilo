@@ -21,35 +21,37 @@ export default function Signup() {
 	} = useForm();
 
 	const onSubmitHandler = async (data) => {
+		const formData = new FormData();
+		formData.append("first_name", data.first_name);
+		formData.append("last_name", data.last_name);
+		formData.append("email", data.email);
+		formData.append("country", data.country);
+		formData.append("phone_no", data.phone_no);
+		formData.append("password", data.password);
+		formData.append("confirm_password", data.confirm_password);
+		formData.append("profile_img", data.profile_img[0]);
 		// console.log(data);
 		try {
 			// API request
-			const response = await axios.post(
-				apiLink + "/register-user/",
-				{
-					first_name: data.first_name,
-					last_name: data.last_name,
-					email: data.email,
-					country: data.country,
-					phone_no: data.phone_no,
-					password: data.password,
-					confirm_password: data.confirm_password,
-					// profile_img: data.profile_img[0],
+			const response = await axios.post(apiLink + "/register-user/", formData, {
+				headers: {
+					"Content-Type": "multipart/form-data",
 				},
-				{
-					headers: {
-						"Content-Type": "multipart/form-data",
-					},
-				}
-			);
-			// console.log(response);
+			});
 			if (response.status === 200) {
+				toast.success(response.data.message);
 				reset();
-				toast.success(
-					response.data.message || "Registration successful! Please log in."
-				);
-				// console.log(response.data);
-				navigate("/login");
+				navigate("/otp", {
+					state: {
+						first_name: data.first_name,
+						last_name: data.last_name,
+						email: data.email,
+						password: data.password,
+						country: data.country,
+						phone_no: data.phone_no,
+						confirm_password: data.confirm_password,
+					},
+				});
 			} else {
 				toast.error(response.data.message || "Registration Failed");
 			}
