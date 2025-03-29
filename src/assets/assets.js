@@ -23,14 +23,19 @@ import playstore_icon from "./playstore_icon.png";
 import appstore_icon from "./appstore_icon.png";
 import title_icon from "./title_icon.png";
 import cat_pic from "./cat_pic.png";
-<<<<<<< HEAD
-=======
+
 import siamese1 from "./siamese1.jpg";
 import britishshorthair2 from "./britishshorthair2.jpg";
 import mainecoon3 from "./mainecoon3.jpg";
 import perciancat4 from "./persiancat4.jpg";
 import ragdoll from "./ragdoll5.jpg";
->>>>>>> 324403b (update home page)
+
+
+import siberianHusky from "./SiberianHusky1.jpg"
+import frenchBullDog from "./frenchBulldog2.jpg"
+import goldenRetriver from "./GoldenRetriver3.jpg"
+import bullDog from "./bulldog55.jpg"
+import germenShephered from "./germenShepherd66.jpg"
 
 export const assets = {
 	logo,
@@ -58,13 +63,17 @@ export const assets = {
 	appstore_icon,
 	title_icon,
 	cat_pic,
-<<<<<<< HEAD
-=======
 
 	siamese1,
 	britishshorthair2,
 	mainecoon3,
 	perciancat4,
 	ragdoll,
->>>>>>> 324403b (update home page)
+
+	siberianHusky,
+	frenchBullDog,
+	goldenRetriver,
+	bullDog,
+	germenShephered,
+
 };
