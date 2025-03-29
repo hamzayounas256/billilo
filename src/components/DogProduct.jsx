@@ -1,44 +1,46 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import { AnimalContext } from "../context/AnimalContext";
-import axios from "axios";
 import { assets } from "../assets/assets";
 import Title from "./Title";
 import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
 
 export default function DogProduct() {
-	const { apiLink, navigate } = useContext(AnimalContext);
-	const [products, setProducts] = useState([]);
-	const [related, setRelated] = useState([]);
+	const { navigate } = useContext(AnimalContext);
 	const uid = localStorage.getItem("id");
 
-	const fetchDashboardData = async () => {
-		try {
-			const response = await axios.get(`${apiLink}/dashboard/`, {
-				params: {
-					user_id: uid,
-					category: 12,
-				},
-			});
-
-			if (response.data.success) {
-				setProducts(response.data.data);
-			} else {
-				console.error("Error Fetching Products:", response.data.message);
-			}
-		} catch (err) {
-			console.error("API Error while fetching products:", err.message);
-		}
-	};
-
-	useEffect(() => {
-		fetchDashboardData();
-	}, []);
-
-	useEffect(() => {
-		const relatedProducts = products.slice(0, 5); // Limit to 6 products
-		setRelated(relatedProducts);
-	}, [products]);
+	const products = [
+		{
+			id: 1,
+			breed: "Siberian Husky",
+			category: "Dog",
+			image: assets.siberianHusky,
+		},
+		{
+			id: 2,
+			breed: "French Bull Dog",
+			category: "Dog",
+			image: assets.frenchBullDog,
+		},
+		{
+			id: 3,
+			breed: "Germen Shephered",
+			category: "Dog",
+			image: assets.germenShephered,
+		},
+		{
+			id: 4,
+			breed: "Golden Retriver",
+			category: "Dog",
+			image: assets.goldenRetriver,
+		},
+		{
+			id: 5,
+			breed: "Bull Dog",
+			category: "Dog",
+			image: assets.bullDog,
+		},
+	];
 
 	return (
 		<div className="container mx-auto py-2 px-4">
@@ -56,19 +58,21 @@ export default function DogProduct() {
 				{/* Left Side*/}
 
 				<div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-					{related.map((item) => (
+					{products.map((item) => (
 						<div
 							key={item.id}
-							onClick={() => navigate(`/productsell/${item.id}`)}
+							onClick={() =>
+								uid ? navigate("/findsellpet") : navigate("/login")
+							}
 							className="cursor-pointer border rounded-lg p-4 shadow-md"
 						>
 							<img
 								className="w-full h-40 object-cover rounded-md mb-2"
-								src={item.images[0]}
+								src={item.image}
 								alt={item.name}
 							/>
 							<p className="text-gray-500 text-sm">{item.breed}</p>
-							<h3 className="font-bold text-lg">{item.name}</h3>
+							{/* <h3 className="font-bold text-lg">{item.name}</h3> */}
 							{/* <p className="font-semibold text-orange-600">Rs {item.price}</p> */}
 						</div>
 					))}
@@ -85,7 +89,7 @@ export default function DogProduct() {
 					<img
 						className="rounded-lg shadow-lg w-full max-w-md"
 						src={assets.about_img}
-						alt="Cats"
+						alt="Dog"
 					/>
 				</motion.div>
 			</div>
