@@ -255,6 +255,12 @@ export default function Navbar() {
 											>
 												CATEGORY
 											</p>
+											<p
+												onClick={() => navigate("/subcategory")}
+												className="cursor-pointer hover:text-black"
+											>
+												SUBCATEGORY
+											</p>
 										</>
 									)}
 								</>

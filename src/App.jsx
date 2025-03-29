@@ -35,7 +35,9 @@ import PostAdvertisment from "./pages/PostAdvertisment";
 import FindAdvertisement from "./pages/FindAdvertisement";
 import AllCategory from "./pages/AllCategory";
 import PostCategory from "./pages/PostCategory";
+import PostSubCategory from "./pages/PostSubCategory";
 import Otp from "./pages/Otp";
+import SubCategories from "./pages/SubCategories";
 // import Otp from "./pages/Otp";
 
 function App() {
@@ -66,7 +68,9 @@ function App() {
 					<Route path="/findadvertisment" element={<FindAdvertisement />} />
 
 					<Route path="/allcategory" element={<AllCategory />} />
+					<Route path="/subcategory" element={<SubCategories />} />
 					<Route path="/postcategory" element={<PostCategory />} />
+					<Route path="/postsubcategory" element={<PostSubCategory />} />
 
 					<Route path="/findadoptpet" element={<FindAdoptPet />} />
 					<Route path="/findanimalshelter" element={<FindAnimalShelter />} />
