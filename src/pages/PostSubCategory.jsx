@@ -48,7 +48,7 @@ export default function PostCategory() {
 			await response.json();
 			toast.success("Information submitted successfully!");
 			reset(); // Reset form only after success
-			navigate("/allcategory");
+			navigate("/subcategory");
 		} catch (error) {
 			console.error("Error submitting the form:", error);
 			toast.error("An error occurred. Please try again.");
