@@ -38,12 +38,14 @@ import PostCategory from "./pages/PostCategory";
 import PostSubCategory from "./pages/PostSubCategory";
 import Otp from "./pages/Otp";
 import SubCategories from "./pages/SubCategories";
+import { ScrollToTop } from "./components/ScrollToTop";
 // import Otp from "./pages/Otp";
 
 function App() {
 	return (
 		// <div className="mx-auto px-4 sm:px-[5px] md:px-[7px] lg:px-[9px]">
 		<div className="mx-auto">
+			<ScrollToTop />
 			<ToastContainer />
 			<Navbar />
 			<Routes>
